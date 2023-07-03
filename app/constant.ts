@@ -13,7 +13,6 @@ export enum Path {
   Settings = "/settings",
   NewChat = "/new-chat",
   Masks = "/masks",
-  Group = "/group",
 }
 
 export enum SlotID {

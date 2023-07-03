@@ -137,13 +137,6 @@ export function SideBar(props: { className?: string }) {
           shadow
         />
         <IconButton
-          icon={<AddIcon />}
-          text={shouldNarrow ? undefined : Locale.Group.Name}
-          className={styles["sidebar-bar-button"]}
-          onClick={() => navigate(Path.Group, { state: { fromHome: true } })}
-          shadow
-        />
-        <IconButton
           icon={<PluginIcon />}
           text={shouldNarrow ? undefined : Locale.Plugin.Name}
           className={styles["sidebar-bar-button"]}
@@ -161,7 +154,6 @@ export function SideBar(props: { className?: string }) {
         }}
       >
         <ChatList narrow={shouldNarrow} />
-        {/* 展示了所有对话列表 */}
       </div>
 
       <div className={styles["sidebar-tail"]}>

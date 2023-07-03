@@ -48,9 +48,6 @@ const NewChat = dynamic(async () => (await import("./new-chat")).NewChat, {
 const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
   loading: () => <Loading noLogo />,
 });
-const GroupPage = dynamic(async () => (await import("./group")).Group, {
-  loading: () => <Loading noLogo />,
-});
 
 export function useSwitchTheme() {
   const config = useAppConfig();
@@ -131,7 +128,6 @@ function Screen() {
           <Route path={Path.Masks} element={<MaskPage />} />
           <Route path={Path.Chat} element={<Chat />} />
           <Route path={Path.Settings} element={<Settings />} />
-          <Route path={Path.Group} element={<GroupPage />} />
         </Routes>
       </div>
     </div>

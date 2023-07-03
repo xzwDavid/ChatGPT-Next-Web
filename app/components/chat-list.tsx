@@ -29,7 +29,6 @@ export function ChatItem(props: {
   index: number;
   narrow?: boolean;
   mask: Mask;
-  group: boolean;
 }) {
   const draggableRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -45,7 +44,7 @@ export function ChatItem(props: {
         <div
           className={`${styles["chat-item"]} ${
             props.selected && styles["chat-item-selected"]
-          } ${props.group && styles["chat-item-group"]}`}
+          }`}
           onClick={props.onClick}
           ref={(ele) => {
             draggableRef.current = ele;
@@ -68,11 +67,7 @@ export function ChatItem(props: {
             </div>
           ) : (
             <>
-              <div className={styles["chat-item-title"]}>
-                {props.title}
-                {props.group && "(群聊)"}
-              </div>
-              {/* 标记群聊 */}
+              <div className={styles["chat-item-title"]}>{props.title}</div>
               <div className={styles["chat-item-info"]}>
                 <div className={styles["chat-item-count"]}>
                   {Locale.ChatItem.ChatItemCount(props.count)}
@@ -142,14 +137,8 @@ export function ChatList(props: { narrow?: boolean }) {
                 id={item.id}
                 index={i}
                 selected={i === selectedIndex}
-                group={item.group}
                 onClick={() => {
-                  if (item.group)
-                    navigate(Path.Chat, {
-                      state: { fromGroup: true },
-                    });
-                  ////如果是群聊，则聊天页面多个添加机器人的按钮
-                  else navigate(Path.Chat);
+                  navigate(Path.Chat);
                   selectSession(i);
                 }}
                 onDelete={() => {
