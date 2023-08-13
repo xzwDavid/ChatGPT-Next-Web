@@ -9,7 +9,7 @@ import {
 } from "@fortaine/fetch-event-source";
 import { prettyObject } from "@/app/utils/format";
 import { sendMessage } from "next/dist/client/dev/error-overlay/websocket";
-
+import ResponseController from "@/app/api/controller/ResponseController";
 export class ChatGPTApi implements LLMApi {
   public ChatPath =
     "/openai/deployments/chatGPT/chat/completions\\?api-version\\=2023-05-15";
@@ -79,8 +79,8 @@ export class ChatGPTApi implements LLMApi {
       stream: options.config.stream,
       model: modelConfig.model,
       temperature: modelConfig.temperature,
-      //max_tokens: 50,
-      //presence_penalty: modelConfig.presence_penalty,
+      max_tokens: modelConfig.max_tokens,
+      presence_penalty: modelConfig.presence_penalty,
     };
 
     console.log("[Request] openai payload: ", requestPayload);
@@ -89,6 +89,7 @@ export class ChatGPTApi implements LLMApi {
     options.onController?.(controller);
 
     try {
+      //alert("gpt!")
       //alert("options.config.stream"+ options.config.stream +"  "+shouldStream)
       const chatPath = this.path(this.ChatPath);
       const chatPayload = {
@@ -130,8 +131,7 @@ export class ChatGPTApi implements LLMApi {
               responseText = await res.clone().text();
               return finish();
             }
-            //alert("Streaming");
-            //alert(sendMessage);
+
             if (
               !res.ok ||
               !res.headers
@@ -189,7 +189,6 @@ export class ChatGPTApi implements LLMApi {
           openWhenHidden: true,
         });
       } else {
-        //alert("No straming!!!");
         if (modelConfig.model !== "lang chain(Upload your docs)") {
           //console.log(JSON.stringify(testBody))
 
@@ -198,7 +197,7 @@ export class ChatGPTApi implements LLMApi {
             const res = await fetch(chatPath, chatPayload);
             const endTime = new Date();
             const executionTime = endTime.getTime() - startTime.getTime();
-            alert(executionTime);
+            //alert(executionTime);
             //const res = await fetch(testPath, testPayload);
             clearTimeout(requestTimeoutId);
 
@@ -217,14 +216,16 @@ export class ChatGPTApi implements LLMApi {
           const history = this.getHistory(messages);
           const uuid = options.uuid;
           const testPath = "http://localhost:3001/api/chat/";
-          //          const prompt = "xzw is cool!!"
 
           const testBody = {
             uuid: uuid,
             question: question,
             history: history,
             agent_prompt: options.prompt,
+            max_tokens: modelConfig.max_tokens,
+            presence_penalty: modelConfig.presence_penalty,
           };
+
           console.log(testBody);
           const testPayload = {
             method: "POST",
@@ -236,8 +237,16 @@ export class ChatGPTApi implements LLMApi {
           };
           //salert("There!")
           try {
-            const res = await fetch(testPath, testPayload);
-            console.log("{The res is }", res);
+            //alert("langchain")
+            //alert("kkkk")
+            //const res = await fetch(testPath, testPayload);
+            const res = await fetch(
+              "http://localhost:5000/api/v1/" + "getresponse",
+              testPayload,
+            );
+
+            //const res = await ResponseController.getResponse(testPayload)
+            //console.log("{The res is }", res);
             clearTimeout(requestTimeoutId);
 
             if (!res.ok) {

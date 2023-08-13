@@ -25,6 +25,7 @@ const en: RequiredLocaleType = {
       Delete: "Delete",
       Edit: "Edit",
       Save: "Save",
+      Rules: "Rules",
     },
     Uploading: "Uploading",
     Rename: "Rename Chat",
@@ -163,7 +164,7 @@ const en: RequiredLocaleType = {
     },
     groupMem: {
       Placeholder: "please input the number of agents",
-      PlaceholderName: "please input the name of group",
+      PlaceholderName: "input a name",
       PlaceholderUser: "please input the number of users",
     },
     Usage: {
@@ -217,6 +218,7 @@ const en: RequiredLocaleType = {
     Toast: (x: any) => `With ${x} contextual prompts`,
     Source: "Reference",
     Edit: "Contextual and Memory Prompts",
+    Rules: "Current Rules",
     Add: "Add a Prompt",
     Clear: "Context Cleared",
     Revert: "Revert",
@@ -226,6 +228,16 @@ const en: RequiredLocaleType = {
   },
   Plugin: {
     Name: "Plugin",
+  },
+  myRuleBase: {
+    Rule1: {
+      description: "Agents should answer the question step by step",
+      enabled: false,
+    },
+    Rule2: {
+      description: "Agents should answer the question concisely",
+      enabled: false,
+    },
   },
   Mask: {
     Name: "Agents",

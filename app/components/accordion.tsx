@@ -1,10 +1,26 @@
 import React, { useState } from "react";
 
-const CollapsibleElement: ({ message }: { message: any }) => JSX.Element = ({
+interface CollapsibleElementProps {
+  message: any;
+  content?: string;
+}
+
+const CollapsibleElement: ({
   message,
-}) => {
+  content,
+}: {
+  message: any;
+  content?: any;
+}) => JSX.Element = ({ message, content }) => {
+  //const con = content;
+  //alert(content);
   return (
     <div>
+      <>
+        <h2>Original answer:</h2>
+        <p>{content}</p>
+      </>
+      <></>
       {message.map(
         (
           doc: {

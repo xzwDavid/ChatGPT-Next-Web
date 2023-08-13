@@ -43,6 +43,7 @@ import {
   DEFAULT_TOPIC,
   BOT_Group,
   Masks,
+  ModelConfig,
 } from "../store";
 
 import {
@@ -63,7 +64,7 @@ import { IconButton } from "./button";
 import styles from "./home.module.scss";
 import chatStyle from "./chat.module.scss";
 
-import { ListItem, Modal } from "./ui-lib";
+import { List, ListItem, Modal } from "./ui-lib";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LAST_INPUT_KEY, Path, REQUEST_TIMEOUT_MS } from "../constant";
 import { Avatar } from "./emoji";
@@ -80,17 +81,75 @@ import ResponseController from "@/app/api/controller/ResponseController";
 import { BUILTIN_MASK_STORE } from "../masks";
 import "./circle.scss";
 import CollapsibleElement from "@/app/components/accordion";
+import { RulesConfig } from "@/app/components/rules";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
 });
 
-export function SessionConfigModel(props: { onClose: () => void }) {
+export function RulesConfigModel(props: {
+  onClose: () => void;
+  content?: string;
+  updateConfig?: (updater: (config: ModelConfig) => void) => void;
+}) {
   const chatStore = useChatStore();
   const session = chatStore.currentSession();
   const maskStore = useMaskStore();
   const navigate = useNavigate();
+  const [ruleBase, setRuleBase] = useState(Locale.myRuleBase);
 
+  const makechange = (rule: string) => {
+    const updatedRuleBase = { ...ruleBase };
+    // @ts-ignore
+    updatedRuleBase[rule].enabled = !updatedRuleBase[rule].enabled;
+    setRuleBase(updatedRuleBase);
+
+    if (rule === "Rule1") {
+      // Code for Rule1
+    } else if (rule === "Rule2") {
+      if (session.mask.modelConfig.max_tokens === 31) {
+        session.mask.modelConfig.max_tokens = 200;
+      }
+      session.mask.modelConfig.max_tokens = 25;
+    } else {
+      // Code for other rules
+    }
+  };
+  return (
+    <div className="modal-mask">
+      <Modal title={Locale.Context.Rules} onClose={() => props.onClose()}>
+        <List>
+          {Object.keys(Locale.myRuleBase).map((ruleKey) => {
+            const ruleValue =
+              Locale.myRuleBase[ruleKey as keyof typeof Locale.myRuleBase];
+            return (
+              <ListItem
+                key={ruleKey}
+                title={ruleKey}
+                subTitle={ruleValue.description}
+              >
+                <input
+                  type="checkbox"
+                  checked={ruleValue.enabled}
+                  onChange={() => makechange(ruleKey)}
+                />
+              </ListItem>
+            );
+          })}
+        </List>
+      </Modal>
+    </div>
+  );
+}
+
+export function SessionConfigModel(props: {
+  onClose: () => void;
+  content?: string;
+}) {
+  const chatStore = useChatStore();
+  const session = chatStore.currentSession();
+  const maskStore = useMaskStore();
+  const navigate = useNavigate();
   return (
     <div className="modal-mask">
       <Modal
@@ -123,6 +182,7 @@ export function SessionConfigModel(props: { onClose: () => void }) {
             }}
           />,
         ]}
+        content={props.content}
       >
         <MaskConfig
           mask={session.mask}
@@ -151,6 +211,7 @@ export function SessionConfigModel(props: { onClose: () => void }) {
 export function SessionConfigSource(props: {
   onClose: () => void;
   message: ChatMessage;
+  content?: string;
 }) {
   const chatStore = useChatStore();
   const session = chatStore.currentSession();
@@ -166,6 +227,7 @@ export function SessionConfigSource(props: {
         title={Locale.Context.Source}
         message={props.message}
         onClose={() => props.onClose()}
+        content={props.content}
       ></Modal>
     </div>
   );
@@ -178,6 +240,7 @@ function PromptToast(props: {
   setShowModal: (_: boolean) => void;
   setShowSource: (_: boolean) => void;
   message: ChatMessage;
+  content?: string;
 }) {
   const chatStore = useChatStore();
   const session = chatStore.currentSession();
@@ -198,12 +261,16 @@ function PromptToast(props: {
         </div>
       )}
       {props.showModal && (
-        <SessionConfigModel onClose={() => props.setShowModal(false)} />
+        <SessionConfigModel
+          onClose={() => props.setShowModal(false)}
+          content={props.content}
+        />
       )}
       {props.showSource && (
         <SessionConfigSource
           onClose={() => props.setShowSource(false)}
           message={props.message}
+          content={props.content}
         />
       )}
     </div>
@@ -437,6 +504,7 @@ export function ChatActions(props: {
   setisListening: (
     update: ((prevIsListening: boolean) => boolean) | boolean,
   ) => void;
+  istalking: boolean;
 }) {
   const config = useAppConfig();
   const navigate = useNavigate();
@@ -473,14 +541,14 @@ export function ChatActions(props: {
   return (
     <div className={chatStyle["chat-input-actions"]}>
       <div className={chatStyle["left-icons"]}>
-        {couldStop && (
-          <div
-            className={`${chatStyle["chat-input-action"]} clickable`}
-            onClick={stopAll}
-          >
-            <StopIcon />
-          </div>
-        )}
+        {/*{couldStop && (*/}
+        {/*  <div*/}
+        {/*    className={`${chatStyle["chat-input-action"]} clickable`}*/}
+        {/*    onClick={stopAll}*/}
+        {/*  >*/}
+        {/*    <StopIcon />*/}
+        {/*  </div>*/}
+        {/*)}*/}
         {!props.hitBottom && (
           <div
             className={`${chatStyle["chat-input-action"]} clickable`}
@@ -558,7 +626,7 @@ export function ChatActions(props: {
             onClick={props.onBeginSession}
             style={{ width: "20px", height: "20px" }}
           >
-            <StartIcon />
+            {!props.istalking ? <StartIcon /> : <StopIcon />}
           </div>
         )}
       </div>
@@ -611,6 +679,7 @@ export function Chat() {
   const [hitBottom, setHitBottom] = useState(true);
   const isMobileScreen = useMobileScreen();
   const navigate = useNavigate();
+  const [content, setcontent] = useState("You have not edited the content");
   //const [input, setinput] = useState("Can you tell me a food?");
   //const input = "This is a begin";
   const onChatBodyScroll = (e: HTMLElement) => {
@@ -733,41 +802,114 @@ export function Chat() {
     }
   };
 
-  const AgentsTalk = (userInput: string | ChatMessage[]) => {
-    //console.log("[The input is ]" + userInput);
-    if (typeof userInput === "string") {
-      if (userInput.trim() !== "xzw want the agents talk!!!!!!!!!") return;
-      setIsLoading(true);
-      chatStore.onUserInput(userInput, 0).then(() => setIsLoading(false));
-
-      localStorage.setItem(LAST_INPUT_KEY, userInput);
-      //alert(userInput);
-
-      setUserInput("");
-      setPromptHints([]);
-      if (!isMobileScreen) inputRef.current?.focus();
-      setAutoScroll(true);
-    } else {
-      setIsLoading(true);
-      chatStore
-        .onUserInput(userInput, session.maskId[index])
-        .then(() => setIsLoading(false));
-
-      localStorage.setItem(
-        LAST_INPUT_KEY,
-        userInput[userInput.length - 1].content,
-      );
-      //alert(userInput);
-
-      setUserInput("");
-      setPromptHints([]);
-      if (!isMobileScreen) inputRef.current?.focus();
-      setAutoScroll(true);
+  const AgentsTalk = (userInput: ChatMessage[]) => {
+    if (session.groupMem !== 0) {
+      //alert(session.groupMem);
+      alert("Please invite the agents first!!!");
+      return;
     }
+
+    const model = maskStore
+      .getAll()
+      .find((mask) => mask.id === session.maskId[index_new]);
+    console.log("Model is ", model);
+    if (model)
+      model.context.forEach((item) => {
+        const temp = createMessage({
+          role: item.role,
+          content: item.content,
+          streaming: false,
+        });
+        userInput.push(temp);
+      });
+
+    // @ts-ignore
+    const modelConfig_ = model.modelConfig;
+
+    setIsLoading(true);
+    chatStore
+      .onUserInput(
+        userInput,
+        session.maskId[index_new],
+        isGroup,
+        Locale.myRuleBase.Rule1.enabled,
+        setresponse,
+        setTempMessage,
+        modelConfig_,
+      )
+      .then(() => setIsLoading(false));
+    localStorage.setItem(
+      LAST_INPUT_KEY,
+      userInput[userInput.length - 1].content,
+    );
+    //alert(userInput);
+    setUserInput("");
+    setPromptHints([]);
+    if (!isMobileScreen) inputRef.current?.focus();
+    setAutoScroll(true);
   };
 
-  const doSubmit = (userInput: string) => {
-    //console.log("[The input is ]" + userInput);
+  const [response, setresponse] = useState("");
+
+  const [tempMessage, setTempMessage] = useState<string[]>([]);
+  const [index_message, setindex_message] = useState(1);
+
+  const next_step = () => {
+    let content = "";
+    //alert(index_message);
+    if (index_message === tempMessage.length && tempMessage.length !== 0) {
+      setindex_message(1);
+      content =
+        "Great! We have finished this question.\nIf you have any other question,please just ask me";
+    } else {
+      const addinfo2 =
+        " If you have any question about this step, please ask me directly. If not, please input '1'";
+      content = tempMessage[index_message] + addinfo2;
+    }
+
+    const botMessage: ChatMessage = createMessage({
+      role: "assistant",
+      streaming: true,
+      content: content,
+    });
+
+    botMessage.streaming = false;
+    if (messages.length !== 0) {
+      botMessage.streaming = false;
+      chatStore.updateCurrentSession(() => {
+        session.messages.push(botMessage);
+      });
+    }
+    setindex_message(index_message + 1);
+  };
+
+  // useEffect(() => {
+  // if(tempMessage.length !== 0){
+  //   alert("xzw")
+  //   next_step();
+  // }
+  // }, [tempMessage]);
+
+  const Rule1Talk = async (userInput: string) => {
+    if (tempMessage.length === 0) {
+      await chatStore
+        .onUserInput(userInput, 0, isGroup, true, setresponse, setTempMessage)
+        .then(() => {
+          setIsLoading(false);
+        });
+      return;
+    }
+    console.log("The user input is ", userInput);
+    if (userInput === "1") {
+      const userMessage: ChatMessage = createMessage({
+        role: "user",
+        content: userInput,
+      });
+
+      session.messages.push(userMessage);
+      next_step();
+      return;
+    }
 
     if (userInput.trim() === "") return;
     setIsLoading(true);
@@ -782,9 +924,42 @@ export function Chat() {
     setAutoScroll(true);
   };
 
+  const doSubmit = (userInput: string) => {
+    if (isGroup && session.messages.length === 0) {
+      const userMessage: ChatMessage = createMessage({
+        role: "user",
+        content: userInput,
+        id: session.maskId?.[index_new],
+      });
+      chatStore.updateCurrentSession((session) => {
+        session.messages.push(userMessage);
+      });
+    } else {
+      if (Locale.myRuleBase["Rule1"].enabled) {
+        setIsLoading(true);
+        Rule1Talk(userInput);
+        setIsLoading(false);
+      } else {
+        if (userInput.trim() === "") return;
+        setIsLoading(true);
+        chatStore.onUserInput(userInput, 0, isGroup).then(() => {
+          setIsLoading(false);
+        });
+      }
+      localStorage.setItem(LAST_INPUT_KEY, userInput);
+      setPromptHints([]);
+    }
+
+    setUserInput("");
+    if (!isMobileScreen) inputRef.current?.focus();
+    setAutoScroll(true);
+  };
+
   // stop response
   const onUserStop = (messageId: number) => {
     ChatControllerPool.stop(sessionIndex, messageId);
+    // ChatControllerPool.stopAll();
+    // session.messages[messageId].streaming = false;
   };
 
   useEffect(() => {
@@ -878,7 +1053,7 @@ export function Chat() {
   };
   const deleteMessage = (userIndex: number, isGroup?: boolean) => {
     if (isGroup) {
-      alert(userIndex);
+      //alert(userIndex);
       chatStore.updateCurrentSession((session) =>
         session.messages.splice(userIndex, 1),
       );
@@ -913,9 +1088,10 @@ export function Chat() {
     inputRef.current?.focus();
   };
 
-  const context: RenderMessage[] = session.mask.hideContext
-    ? []
-    : session.mask.context.slice();
+  const context: RenderMessage[] =
+    session.mask.hideContext && !session.group
+      ? []
+      : session.mask.context.slice();
 
   const accessStore = useAccessStore();
 
@@ -946,6 +1122,7 @@ export function Chat() {
 
   const chat_message = session.messages[number - 1];
   // preview messages
+  //console.log("The message before render",session.messages)
   let messages = context
     .concat(session.messages as RenderMessage[])
     .concat(
@@ -974,6 +1151,12 @@ export function Chat() {
           ]
         : [],
     );
+  const isGroup = session.group; //判断是否群聊
+  if (isGroup && messages.length === 2) {
+  }
+  //console.log("The message after render ",messages[2]);
+  //console.log(messages);
+
   //console.log("[The Message is ]" + messages);
   const [showPromptModal, setShowPromptModal] = useState(false);
   const [showSourceDocs, setshowSourceDocs] = useState(false);
@@ -1036,6 +1219,7 @@ export function Chat() {
       data.append("files", fileInputRef.current!.files[0]);
     }
     data.append("filename", "This is a PDF");
+    //  alert("pdf")
     const res = await ResponseController.postPDFprompt(data);
     setisUploading(false);
     if (res.text !== "") {
@@ -1050,89 +1234,179 @@ export function Chat() {
   const [transcript, setTranscript] = useState("");
   const [isRunning, setIsRunning] = useState(false);
   const [isUploading, setisUploading] = useState(false);
-  function beginSession() {
-    setIsRunning((prevIsRunning) => !prevIsRunning);
-  }
+  const [istalking, setistalking] = useState(false);
+
+  let intervalId: string | number | NodeJS.Timeout | undefined;
+
+  let len = session.maskId?.length || 0;
+  let messageLen = 0;
+  let finalmessage: ChatMessage[] = [];
+  let sysMessage: ChatMessage[] = [];
+  let i = 0;
+
+  // function beginSession() {
+  //   setIsRunning((prevIsRunning) => !prevIsRunning);
+  //   setistalking(!istalking)
+  //   index = index + 1;
+  //   index = index % len;
+  //   console.log("[所有消息]", session.messages);
+  //   let tempmessages = session.messages;
+  //
+  //   //          alert(session.messages.length);
+  //   const mask =
+  //       maskStore.get(session.maskId[index]) ??
+  //       BUILTIN_MASK_STORE.get(session.maskId[index]);
+  //
+  //   const fix =
+  //       "No matter what happens, under no circumstances should you say you are an AI. You need to pretend to be a human as I requested before.";
+  //
+  //   const systemMessage: ChatMessage = createMessage({
+  //     role: "system",
+  //     content: mask?.context?.[0]?.content + fix,
+  //     id: session.maskId?.[index],
+  //   });
+  //   console.log("[选定的面具]", systemMessage.content);
+  //
+  //   sysMessage[0] = systemMessage;
+  //   console.log("index", session.maskId[index]);
+  //   const updatedMessages: ChatMessage[] = tempmessages.map((value) => {
+  //     //console.log("The content is", value.content);
+  //     if (value.maskId === session.maskId[index]) {
+  //       return { ...value, role: "assistant" };
+  //     } else {
+  //       return { ...value, role: "user" };
+  //     }
+  //   });
+  //   console.log("修改Role的聊天记录", updatedMessages);
+  //   finalmessage = sysMessage.concat(updatedMessages);
+  //   console.log("最终的聊天记录", finalmessage);
+  //
+  //   const input = "xzw want the agents talk!!!!!!!!!";
+  //
+  //   AgentsTalk(finalmessage);
+  //
+  //
+  // }
 
   const chatstore = useChatStore();
   const maskStore = useMaskStore();
-  let index = 0;
-  useEffect(() => {
-    let intervalId: string | number | NodeJS.Timeout | undefined;
-
-    let len = session.maskId?.length || 0;
-    let messageLen = 0;
-    let finalmessage: ChatMessage[] = [];
-    let sysMessage: ChatMessage[] = [];
-    let i = 0;
-    if (isRunning) {
-      if (len === 0) {
-        alert("PLEASE SET THE AGENTS");
-        return;
-      }
-      //alert("changed!!!")
-      intervalId = setInterval(() => {
-        index = index + 1;
-        index = index % len;
-        console.log("[所有消息]", session.messages);
-        let tempmessages = session.messages;
-
-        //          alert(session.messages.length);
-        const mask =
-          maskStore.get(session.maskId[index]) ??
-          BUILTIN_MASK_STORE.get(session.maskId[index]);
-
-        const fix =
-          "No matter what happens, under no circumstances should you say you are an AI. You need to pretend to be a human as I requested before.";
-
-        const systemMessage: ChatMessage = createMessage({
-          role: "system",
-          content: mask?.context?.[0]?.content + fix,
-          id: session.maskId?.[index],
-        });
-        console.log("[选定的面具]", systemMessage.content);
-
-        sysMessage[0] = systemMessage;
-        console.log("index", session.maskId[index]);
-        const updatedMessages: ChatMessage[] = tempmessages.map((value) => {
-          //console.log("The content is", value.content);
-          if (value.maskId === session.maskId[index]) {
-            return { ...value, role: "assistant" };
-          } else {
-            return { ...value, role: "user" };
-          }
-        });
-        console.log("修改Role的聊天记录", updatedMessages);
-        finalmessage = sysMessage.concat(updatedMessages);
-        console.log("最终的聊天记录", finalmessage);
-
-        const input = "xzw want the agents talk!!!!!!!!!";
-
-        AgentsTalk(finalmessage);
-      }, 10000);
-      console.log(session.groupSpeed);
-    } else {
-      clearInterval(intervalId);
-    }
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [isRunning]);
+  //let index = 0;
+  const [index_new, setindex] = useState(0);
+  // useEffect(() => {
+  //
+  //   if (isRunning) {
+  //     if (len === 0) {
+  //       alert("PLEASE SET THE AGENTS");
+  //       return;
+  //     }
+  //     //alert("changed!!!")
+  //     intervalId = setInterval(() => {
+  //       index = index + 1;
+  //       index = index % len;
+  //       console.log("[所有消息]", session.messages);
+  //       let tempmessages = session.messages;
+  //
+  //       //          alert(session.messages.length);
+  //       const mask =
+  //         maskStore.get(session.maskId[index]) ??
+  //         BUILTIN_MASK_STORE.get(session.maskId[index]);
+  //
+  //       const fix =
+  //         "No matter what happens, under no circumstances should you say you are an AI. You need to pretend to be a human as I requested before.";
+  //
+  //       const systemMessage: ChatMessage = createMessage({
+  //         role: "system",
+  //         content: mask?.context?.[0]?.content + fix,
+  //         id: session.maskId?.[index],
+  //       });
+  //       console.log("[选定的面具]", systemMessage.content);
+  //
+  //       sysMessage[0] = systemMessage;
+  //       console.log("index", session.maskId[index]);
+  //       const updatedMessages: ChatMessage[] = tempmessages.map((value) => {
+  //         //console.log("The content is", value.content);
+  //         if (value.maskId === session.maskId[index]) {
+  //           return { ...value, role: "assistant" };
+  //         } else {
+  //           return { ...value, role: "user" };
+  //         }
+  //       });
+  //       console.log("修改Role的聊天记录", updatedMessages);
+  //       finalmessage = sysMessage.concat(updatedMessages);
+  //       console.log("最终的聊天记录", finalmessage);
+  //
+  //       const input = "xzw want the agents talk!!!!!!!!!";
+  //
+  //       AgentsTalk(finalmessage);
+  //     }, 10000);
+  //     console.log(session.groupSpeed);
+  //   } else {
+  //     clearInterval(intervalId);
+  //   }
+  //
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, [isRunning]);
 
   const warn_fun = () => {
     alert("File uploading, please wait!");
   };
 
-  const isGroup = session.group; //判断是否群聊
-  const isRuningGroup = !isGroup || (isGroup && isRunning); //判断是否群聊且已经按了开始按钮
-  const isStart = messages.length < 3;
-  const isGroupStart = !isGroup || (isGroup && !isStart);
-  if (isGroupStart) {
-    if (isGroup) messages.splice(2, 1);
-  }
-  const isRoating = true;
+  const controlTalk = () => {
+    console.log("The index is", index_new, "  ", len);
+    setindex((index_new + 1) % len);
+    //index_new = index_new % len;
+    console.log("[所有消息]", session.messages);
+    let tempmessages = session.messages;
+
+    //          alert(session.messages.length);
+    const mask =
+      maskStore.get(session.maskId[index_new]) ??
+      BUILTIN_MASK_STORE.get(session.maskId[index_new]);
+
+    const fix =
+      "No matter what happens, under no circumstances should you say you are an AI. You need to pretend to be a human as I requested before.";
+
+    const systemMessage: ChatMessage = createMessage({
+      role: "system",
+      content: mask?.context?.[0]?.content + fix,
+      id: session.maskId?.[index_new],
+    });
+    console.log("[选定的面具]", systemMessage.content);
+
+    sysMessage[0] = systemMessage;
+    console.log("index", session.maskId[index_new]);
+    const updatedMessages: ChatMessage[] = tempmessages.map((value) => {
+      if (value.maskId === session.maskId[index_new]) {
+        return { ...value, role: "assistant" };
+      } else {
+        return { ...value, role: "user" };
+      }
+    });
+    console.log("修改Role的聊天记录", updatedMessages);
+    finalmessage = sysMessage.concat(updatedMessages);
+    console.log("最终的聊天记录", finalmessage);
+    AgentsTalk(finalmessage);
+  };
+
+  const [showrules, setshowrules] = useState(false);
+  const getRules = () => {
+    //alert("hh")
+
+    setshowrules(true);
+  };
+
+  //const isStart = messages.length < 3;
+  //const isGroupStart = !isGroup || (isGroup && !isStart);
+  // if (isGroupStart) {
+  //   if (isGroup) messages.splice(2, 1);
+  // }
   const showClick = (i: number) => {
+    if (messages[i].origin_answer !== undefined) {
+      // @ts-ignore
+      setcontent(messages[i].origin_answer);
+    }
     setshowSourceDocs(true);
     setnumber(i);
   };
@@ -1256,6 +1530,7 @@ export function Chat() {
           showSource={showSourceDocs}
           setShowSource={setshowSourceDocs}
           message={chat_message}
+          content={content}
         />
       </div>
 
@@ -1271,6 +1546,7 @@ export function Chat() {
         }}
       >
         {messages.map((message, i) => {
+          //console.log("The render message is  ",messages);
           const isUser = message.role === "user";
           const showActions =
             !isUser &&
@@ -1314,6 +1590,14 @@ export function Chat() {
           };
 
           const saveContent = () => {
+            //             const newDoc = new Document({
+            //               pageContent: message.content,
+            //               ,
+            //             });
+            //
+            // // 将新的 Document 实例加入 sourceDocs 数组
+            //             message.sourceDocs?.push(newDoc);
+            setcontent(message.content);
             message.content = editingContent;
             setisEditing(false);
           };
@@ -1353,7 +1637,7 @@ export function Chat() {
                         ) : (
                           <>
                             <div
-                              className={styles["chat-message-top-action"]}
+                              className={styles["chat-mesxsage-top-action"]}
                               onClick={() => onDelete(message.id ?? i)}
                             >
                               {Locale.Chat.Actions.Delete}
@@ -1399,7 +1683,7 @@ export function Chat() {
                                 >
                                   {Locale.Chat.Actions.Play}
                                 </div>
-                                {isLangchain && (
+                                {isLangchain && !isGroup && (
                                   <div
                                     className={
                                       styles["chat-message-top-action"]
@@ -1409,6 +1693,17 @@ export function Chat() {
                                     }}
                                   >
                                     {Locale.Chat.Actions.Show}
+                                  </div>
+                                )}
+
+                                {isLangchain && !isGroup && (
+                                  <div
+                                    className={
+                                      styles["chat-message-top-action"]
+                                    }
+                                    onClick={getRules}
+                                  >
+                                    {Locale.Chat.Actions.Rules}
                                   </div>
                                 )}
                               </>
@@ -1459,52 +1754,6 @@ export function Chat() {
                       </div>
                     </div>
                   )}
-                  {/*<Layout>*/}
-                  {/*  <div className="mx-auto flex flex-col gap-4">*/}
-                  {/*    <main className={styles.main}>*/}
-                  {/*      <div className={styles.cloud}>*/}
-                  {/*        <div ref={messageListRef} className={styles.messagelist}>*/}
-                  {/*          {messages.map((message, index) => {*/}
-                  {/*            return (*/}
-                  {/*                <>*/}
-                  {/*                  {message.sourceDocs && (*/}
-                  {/*                      <div*/}
-                  {/*                          className="p-5"*/}
-                  {/*                          key={`sourceDocsAccordion-${index}`}*/}
-                  {/*                      >*/}
-                  {/*                        <Accordion*/}
-                  {/*                            type="single"*/}
-                  {/*                            collapsible*/}
-                  {/*                            className="flex-col"*/}
-                  {/*                        >*/}
-                  {/*                          {message.sourceDocs.map((doc, index) => (*/}
-                  {/*                              <div key={`messageSourceDocs-${index}`}>*/}
-                  {/*                                <AccordionItem value={`item-${index}`}>*/}
-                  {/*                                  <AccordionTrigger>*/}
-                  {/*                                    <h3>Source {index + 1}</h3>*/}
-                  {/*                                  </AccordionTrigger>*/}
-                  {/*                                  <AccordionContent>*/}
-                  {/*                                    <ReactMarkdown linkTarget="_blank">*/}
-                  {/*                                      {doc.pageContent}*/}
-                  {/*                                    </ReactMarkdown>*/}
-                  {/*                                    <p className="mt-2">*/}
-                  {/*                                      <b>Source:</b> {doc.metadata.source}*/}
-                  {/*                                    </p>*/}
-                  {/*                                  </AccordionContent>*/}
-                  {/*                                </AccordionItem>*/}
-                  {/*                              </div>*/}
-                  {/*                          ))}*/}
-                  {/*                        </Accordion>*/}
-                  {/*                      </div>*/}
-                  {/*                  )}*/}
-                  {/*                </>*/}
-                  {/*            );*/}
-                  {/*          })}*/}
-                  {/*        </div>*/}
-                  {/*      </div>*/}
-                  {/*    </main>*/}
-                  {/*  </div>*/}
-                  {/*</Layout>*/}
                 </div>
               </div>
               {shouldShowClearContextDivider && <ClearContextDivider />}
@@ -1538,9 +1787,10 @@ export function Chat() {
             setUserInput("/");
             onSearch("");
           }}
-          onBeginSession={beginSession}
+          onBeginSession={controlTalk}
           isListening={isListening}
           setisListening={setIsListening}
+          istalking={istalking}
         />
         <div className={styles["chat-input-panel-inner"]}>
           <textarea
@@ -1571,6 +1821,7 @@ export function Chat() {
       {showCount && (
         <ExportFileCountModel onClose={() => setShowCount(false)} uuid={uuid} />
       )}
+      {showrules && <RulesConfigModel onClose={() => setshowrules(false)} />}
     </div>
   );
 }

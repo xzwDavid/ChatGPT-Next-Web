@@ -170,8 +170,15 @@ function ContextPromptItem(props: {
   update: (prompt: ChatMessage) => void;
   remove: () => void;
 }) {
+  const [role, setrole] = useState(false);
   const [focusingInput, setFocusingInput] = useState(false);
-
+  const promptforsystem =
+    "Please define your agents here(e.g. I want you to be patient.)";
+  const promptforuser = "Please add the chat_history to set the scene you want";
+  const promptforassistant =
+    "Please add the chat_history to set the scene you want";
+  const placeholder =
+    props.prompt.role === "system" ? promptforsystem : promptforassistant;
   return (
     <div className={chatStyle["context-prompt-row"]}>
       {!focusingInput && (
@@ -199,6 +206,7 @@ function ContextPromptItem(props: {
         rows={focusingInput ? 5 : 1}
         onFocus={() => setFocusingInput(true)}
         onBlur={() => setFocusingInput(false)}
+        placeholder={placeholder}
         onInput={(e) =>
           props.update({
             ...props.prompt,

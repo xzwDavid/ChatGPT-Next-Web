@@ -450,6 +450,8 @@ export function ImagePreviewer(props: {
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
       const pdfBlob = pdf.output("blob");
       data.append("files", pdfBlob, `${props.topic}.pdf`);
+      data.append("filename", "this is a text");
+      alert("text");
     } else {
       alert("Upload failure!");
     }
@@ -552,15 +554,13 @@ export function MarkdownPreviewer(props: {
       })
       .join("\n\n");
 
-  const txtText =
-    `${props.topic}\n\n` +
-    props.messages
-      .map((m) => {
-        return m.role === "user"
-          ? `question:\n${m.content}`
-          : `answer:\n${m.content.trim()}`;
-      })
-      .join("\n\n");
+  const txtText = props.messages
+    .map((m) => {
+      return m.role === "user"
+        ? `question:\n${m.content}`
+        : `answer:\n${m.content.trim()}`;
+    })
+    .join("\n\n");
   const copy = () => {
     copyToClipboard(mdText);
   };
@@ -578,15 +578,6 @@ export function MarkdownPreviewer(props: {
     };
 
     console.log(txtText);
-    // // data.append("uuid", uuidValue);
-    // // data.append("content", txtText);
-    // // data.append("filename",`${props.topic}`+'.txt');
-    // // console.log("[The text is ]", txtText)
-
-    // const data = new FormData();
-    // data.append('uuid', uuidValue);
-    // data.append('content', txtText);
-    // data.append('filename', `${props.topic}.txt`);
 
     const res = await ResponseController.postTXTprompt(data);
     if (res.text !== "") {

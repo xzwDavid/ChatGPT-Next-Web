@@ -27,6 +27,7 @@ const BrowserSpeechToText: React.FC<BrowserSpeechToTextProps> = ({
   Transcript,
   setTranscript,
 }) => {
+  // @ts-ignore
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(
     globalRecognition,
   );
@@ -39,6 +40,7 @@ const BrowserSpeechToText: React.FC<BrowserSpeechToTextProps> = ({
       //let currentTranscript = Transcript;
       let temp = Transcript;
 
+      // @ts-ignore
       recognition.onresult = (event: SpeechRecognitionEvent) => {
         let currentTranscript = Transcript; // 使用既有的 Transcript
         for (let i = event.resultIndex; i < event.results.length; i++) {

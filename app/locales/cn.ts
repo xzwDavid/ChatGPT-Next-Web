@@ -1,6 +1,13 @@
 import { SubmitKey } from "../store/config";
 import AddIcon from "../icons/add.svg";
 import StartIcon from "../icons/start.svg";
+interface Rule {
+  description: string;
+  enabled: boolean;
+}
+interface RuleBase {
+  [ruleName: string]: Rule;
+}
 const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
@@ -25,6 +32,7 @@ const cn = {
       Delete: "删除",
       Edit: "修改",
       Save: "修改完成",
+      Rules: "显示规则",
     },
     Uploading: "Uploading",
     Rename: "重命名对话",
@@ -213,6 +221,7 @@ const cn = {
   Context: {
     Toast: (x: any) => `包含 ${x} 条预设提示词`,
     Edit: "当前对话设置",
+    Rules: "Current Rules",
     Add: "新增预设对话",
     Source: "参考资料",
     Clear: "上下文已清除",
@@ -223,6 +232,17 @@ const cn = {
   },
   Group: {
     Name: "Group",
+  },
+
+  myRuleBase: {
+    Rule1: {
+      description: "Agents should answer the question step by step",
+      enabled: false,
+    },
+    Rule2: {
+      description: "Agents should answer the question concisely",
+      enabled: false,
+    },
   },
   Mask: {
     Name: "面具",

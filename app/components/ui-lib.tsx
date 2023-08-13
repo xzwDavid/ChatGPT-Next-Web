@@ -93,6 +93,7 @@ interface ModalProps {
   actions?: JSX.Element[];
   onClose?: () => void;
   message?: ChatMessage;
+  content?: string;
 }
 export function Modal(props: ModalProps) {
   useEffect(() => {
@@ -121,7 +122,10 @@ export function Modal(props: ModalProps) {
       </div>
       {props.message !== undefined && (
         <div className={styles["modal-content"]}>
-          <CollapsibleElement message={props.message?.sourceDocs} />
+          <CollapsibleElement
+            message={props.message?.sourceDocs}
+            content={props.content}
+          />
         </div>
       )}
 

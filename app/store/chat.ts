@@ -5,8 +5,8 @@ import { trimTopic } from "../utils";
 
 import Locale from "../locales";
 import { showToast } from "../components/ui-lib";
-import { ModelType } from "./config";
-import { createEmptyMask, Mask } from "./mask";
+import { ModelConfig, ModelType } from "./config";
+import { createEmptyMask, Mask, useMaskStore } from "./mask";
 import { StoreKey } from "../constant";
 import { api, RequestMessage } from "../client/api";
 import { ChatControllerPool } from "../client/controller";
@@ -20,6 +20,7 @@ export type ChatMessage = RequestMessage & {
   id?: number;
   model?: ModelType;
   sourceDocs?: Document[];
+  origin_answer?: string;
 };
 
 export interface Masks {
@@ -141,6 +142,10 @@ interface ChatStore {
     content: string | ChatMessage[],
     maskId: number,
     isGroup?: boolean,
+    isRule1?: boolean,
+    setResponse?: React.Dispatch<React.SetStateAction<string>>,
+    setTempMessages?: React.Dispatch<React.SetStateAction<string[]>>,
+    modelConf?: ModelConfig,
   ) => Promise<void>;
   summarizeSession: () => void;
   updateStat: (message: ChatMessage) => void;
@@ -339,10 +344,203 @@ export const useChatStore = create<ChatStore>()(
         content: string | ChatMessage[],
         maskId: number,
         isGroup?: boolean,
+        isRule1?: boolean,
+        setResponse?: React.Dispatch<React.SetStateAction<string>>,
+        setTempMessages?: React.Dispatch<React.SetStateAction<string[]>>,
+        modelConf?: ModelConfig,
       ) {
+        const process_text = (input: string): string[] => {
+          // 使用正则表达式来匹配数字点后面的内容，并支持换行符
+          const regex = /(\d+)\.(.*?)(?:\n|$)/g;
+
+          const matches = input.match(regex);
+
+          if (matches) {
+            // 去除匹配结果中的点号和换行符并返回
+            return matches.map((match) => match.replace(/[\.\n]/g, "").trim());
+          } else {
+            return [];
+          }
+        };
+
+        if (isRule1 && typeof content === "string") {
+          const session = get().currentSession();
+          //const masks = useMaskStore
+          let modelConfig;
+          if (!modelConf) {
+            modelConfig = session.mask.modelConfig;
+          } else {
+            modelConfig = modelConf;
+            // alert(modelConfig.model);
+          }
+
+          //alert(modelConfig.model)
+          const userMessage: ChatMessage = createMessage({
+            role: "user",
+            content: content,
+          });
+
+          const botMessage: ChatMessage = createMessage({
+            role: "assistant",
+            streaming: true,
+            id: userMessage.id! + 1,
+            model: modelConfig.model,
+          });
+          const botMessage_push: ChatMessage = createMessage({
+            role: "assistant",
+            streaming: false,
+            id: userMessage.id! + 1,
+            model: modelConfig.model,
+          });
+
+          const systemInfo = createMessage({
+            role: "system",
+            content: `IMPORTANT: You are a virtual assistant powered by the ${
+              modelConfig.model
+            } model, now time is ${new Date().toLocaleString()}}`,
+            id: botMessage_push.id! + 1,
+          });
+
+          // get recent messages
+          const systemMessages = [];
+          // if user define a mask with context prompts, wont send system info
+          if (session.mask.context.length === 0) {
+            systemMessages.push(systemInfo);
+          }
+
+          const recentMessages = get().getMessagesWithMemory();
+          console.log("[recentMessage", recentMessages);
+          const sendMessages = systemMessages.concat(
+            recentMessages.concat(userMessage),
+          );
+
+          console.log("[SendMessage is] : ", sendMessages);
+          const sessionIndex = get().currentSessionIndex;
+          const messageIndex = get().currentSession().messages.length + 1;
+
+          get().updateCurrentSession((session) => {
+            session.messages.push(userMessage);
+            session.messages.push(botMessage_push);
+          });
+
+          let isStreaming = true;
+          //alert(modelConfig.model);
+          if (modelConfig.model === "lang chain(Upload your docs)") {
+            isStreaming = false;
+          }
+
+          //alert(isStreaming)
+          // make request
+          console.log("[User Input] ", sendMessages);
+          const chat = get().currentSession();
+
+          //const chat_id = get().globalId
+          //alert(chat_id);
+          const uuid = chat.id;
+          //alert(uuid);
+
+          let prompt = "";
+          for (let i = chat.messages.length - 1; i >= 0; i--) {
+            if (chat.messages[i].role === "assistant") {
+              prompt = chat.mask?.context[0]?.content;
+              //alert(prompt);
+              break;
+            }
+          }
+          console.log("The config is ", modelConfig);
+          api.llm.chat({
+            uuid: uuid,
+            messages: sendMessages,
+            config: { ...modelConfig, stream: isStreaming },
+            prompt: prompt,
+            onUpdate(message) {
+              botMessage.streaming = true;
+              if (message) {
+                botMessage.content = message;
+              }
+              set(() => ({}));
+            },
+            onFinish(message, sourceDocs?) {
+              //alert("triggered1!!");
+              botMessage.streaming = false;
+              //alert(botMessage.content);
+              if (message) {
+                botMessage.content = message;
+                botMessage.origin_answer = message;
+                if (setResponse) {
+                  setResponse(message);
+                }
+
+                if (setTempMessages) {
+                  const temp = process_text(message);
+                  console.log("The temp is ", temp);
+                  if (temp.length > 3) {
+                    setTempMessages(temp);
+                  }
+                  const addinfo1 = "I will answer your question step by step. ";
+                  const addinfo2 =
+                    " If you have any question about this step, please ask me directly. If not, please input '1'.";
+                  botMessage_push.content = addinfo1 + temp[0] + addinfo2;
+                  botMessage_push.streaming = false;
+                }
+
+                if (sourceDocs) {
+                  botMessage.sourceDocs = sourceDocs;
+                }
+
+                get().onNewMessage(botMessage);
+              }
+
+              ChatControllerPool.remove(
+                sessionIndex,
+                botMessage.id ?? messageIndex,
+              );
+              set(() => ({}));
+            },
+            onError(error) {
+              const isAborted = error.message.includes("aborted");
+              botMessage.content =
+                "\n\n" +
+                prettyObject({
+                  error: true,
+                  message: error.message,
+                });
+              botMessage.streaming = false;
+              userMessage.isError = !isAborted;
+              botMessage.isError = !isAborted;
+
+              set(() => ({}));
+              ChatControllerPool.remove(
+                sessionIndex,
+                botMessage.id ?? messageIndex,
+              );
+
+              console.error("[Chat] failed ", error);
+            },
+            onController(controller) {
+              // collect controller for stop/retry
+              ChatControllerPool.addController(
+                sessionIndex,
+                botMessage.id ?? messageIndex,
+                controller,
+              );
+            },
+          });
+
+          //alert("oooo");
+          return;
+        }
+
         if (typeof content === "string") {
           const session = get().currentSession();
-          const modelConfig = session.mask.modelConfig;
+          //const modelConfig = session.mask.modelConfig;
+          let modelConfig;
+          if (!modelConf) {
+            modelConfig = session.mask.modelConfig;
+          } else {
+            modelConfig = modelConf;
+            //alert(modelConfig.model);
+          }
 
           //alert(modelConfig.model)
           const userMessage: ChatMessage = createMessage({
@@ -384,16 +582,10 @@ export const useChatStore = create<ChatStore>()(
           const messageIndex = get().currentSession().messages.length + 1;
 
           // save user's and bot's message
-          if (!isGroup) {
-            get().updateCurrentSession((session) => {
-              session.messages.push(userMessage);
-              session.messages.push(botMessage);
-            });
-          } else {
-            get().updateCurrentSession((session) => {
-              session.messages.push(userMessage);
-            });
-          }
+          get().updateCurrentSession((session) => {
+            session.messages.push(userMessage);
+            session.messages.push(botMessage);
+          });
           let isStreaming = true;
           //alert(modelConfig.model);
           if (modelConfig.model === "lang chain(Upload your docs)") {
@@ -418,6 +610,7 @@ export const useChatStore = create<ChatStore>()(
               break;
             }
           }
+          console.log("The config is ", modelConfig);
           api.llm.chat({
             uuid: uuid,
             messages: sendMessages,
@@ -436,6 +629,8 @@ export const useChatStore = create<ChatStore>()(
               //alert(botMessage.content);
               if (message) {
                 botMessage.content = message;
+                botMessage.origin_answer = message;
+
                 if (sourceDocs) {
                   botMessage.sourceDocs = sourceDocs;
                 }
@@ -480,31 +675,28 @@ export const useChatStore = create<ChatStore>()(
           });
         } else {
           const session = get().currentSession();
-          const modelConfig = session.mask.modelConfig;
-          const question = content[content.length - 1].content;
+          let modelConfig;
+          if (!modelConf) {
+            modelConfig = session.mask.modelConfig;
+          } else {
+            modelConfig = modelConf;
+            //alert(modelConfig.model);
+          }
+
+          //const question = content[content.length - 1].content;
           //alert(modelConfig.model)
-          const userMessage: ChatMessage = createMessage({
-            role: "user",
-            content: question,
-          });
 
           const botMessage: ChatMessage = createMessage({
             role: "assistant",
             streaming: true,
-            id: userMessage.id! + 1,
             model: modelConfig.model,
           });
-
-          // const groupNum = get().SystemInfos.length;
-          // console.log(groupNum);
 
           const systemInfo = createMessage({
             role: "system",
             content: `IMPORTANT: You are a virtual assistant powered by the ${
               modelConfig.model
             } model, now time is ${new Date().toLocaleString()}}`,
-            // content:
-            // "从现在起你是一个充满哲学思维的心灵导师，当我每次输入一个疑问时你需要用一句富有哲理的名言警句来回答我，并且表明作者和出处\n\n\n要求字数不少于15个字，不超过30字，每次只返回一句且不输出额外的其他信息，你需要使用中文和英文双语输出\n\n\n当你准备好的时候只需要回复“我已经准备好了”（不需要输出任何其他内容）,你每次说话请使用“我是一个哲学家”开头",
           });
 
           // get recent messages
@@ -514,20 +706,21 @@ export const useChatStore = create<ChatStore>()(
             systemMessages.push(systemInfo);
           }
 
-          const recentMessages = get().getMessagesWithMemory();
-          console.log("[recentMessage", recentMessages);
-          const sendMessages = systemMessages.concat(
-            recentMessages.concat(userMessage),
-          );
+          // const recentMessages = get().getMessagesWithMemory();
+          // console.log("[recentMessage", recentMessages);
+          // const sendMessages = systemMessages.concat(
+          //   recentMessages.concat(userMessage),
+          // );
 
-          console.log("[SendMessage is] : ", sendMessages);
+          console.log("[SendMessage is] : ", content);
           const sessionIndex = get().currentSessionIndex;
           const messageIndex = get().currentSession().messages.length + 1;
           console.log("[messageIndex] : ", messageIndex);
-          // save user's and bot's message
+
           get().updateCurrentSession((session) => {
             session.messages.push(botMessage);
           });
+          //});
           let isStreaming = true;
           //alert(modelConfig.model);
           if (modelConfig.model === "lang chain(Upload your docs)") {
@@ -535,7 +728,6 @@ export const useChatStore = create<ChatStore>()(
           }
           isStreaming = false;
 
-          console.log("[User Input] ", sendMessages);
           const chat = get().currentSession();
           const uuid = chat.id;
           let prompt = "";
@@ -546,7 +738,7 @@ export const useChatStore = create<ChatStore>()(
               break;
             }
           }
-          //alert("1111uuidcd  " + uuid);
+          console.log("XZW   The config is ", modelConfig);
           api.llm.chat({
             uuid: uuid,
             messages: content,
@@ -595,7 +787,7 @@ export const useChatStore = create<ChatStore>()(
                   message: error.message,
                 });
               botMessage.streaming = false;
-              userMessage.isError = !isAborted;
+              //userMessage.isError = !isAborted;
               botMessage.isError = !isAborted;
 
               set(() => ({}));
