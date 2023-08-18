@@ -400,7 +400,7 @@
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.05);
   padding: 10px;
-  font-size: 14px;
+  font-size: 12px;
   user-select: text;
   word-break: break-word;
   border: var(--border-in-light);
@@ -436,6 +436,7 @@
     }
   }
 }
+
 
 .chat-message-user > .chat-message-container > .chat-message-item {
   background-color: var(--second);

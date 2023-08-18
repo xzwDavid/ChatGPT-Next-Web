@@ -21,6 +21,8 @@ export type ChatMessage = RequestMessage & {
   model?: ModelType;
   sourceDocs?: Document[];
   origin_answer?: string;
+  comment?: string;
+  iscomment?: boolean;
 };
 
 export interface Masks {
@@ -473,19 +475,21 @@ export const useChatStore = create<ChatStore>()(
 
                 if (setTempMessages) {
                   const temp = process_text(message);
+
                   console.log("The temp is ", temp);
                   if (temp.length > 3) {
                     setTempMessages(temp);
                   }
-                  const addinfo1 = "I will answer your question step by step. ";
+                  const addinfo1 =
+                    "I will answer your question step by step. \n";
                   const addinfo2 =
-                    " If you have any question about this step, please ask me directly. If not, please input '1'.";
+                    "\n If you have any question about this step, please ask me directly. If not, please input '1'.";
                   botMessage_push.content = addinfo1 + temp[0] + addinfo2;
                   botMessage_push.streaming = false;
                 }
 
                 if (sourceDocs) {
-                  botMessage.sourceDocs = sourceDocs;
+                  botMessage_push.sourceDocs = sourceDocs;
                 }
 
                 get().onNewMessage(botMessage);

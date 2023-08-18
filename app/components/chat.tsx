@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import React, { ChangeEvent } from "react";
 
 import ReactMarkdown from "react-markdown";
 import { useDebouncedCallback } from "use-debounce";
@@ -82,6 +82,8 @@ import { BUILTIN_MASK_STORE } from "../masks";
 import "./circle.scss";
 import CollapsibleElement from "@/app/components/accordion";
 import { RulesConfig } from "@/app/components/rules";
+import { PopupContent } from "./notes";
+import { comment } from "postcss";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -212,6 +214,7 @@ export function SessionConfigSource(props: {
   onClose: () => void;
   message: ChatMessage;
   content?: string;
+  comment?: string;
 }) {
   const chatStore = useChatStore();
   const session = chatStore.currentSession();
@@ -228,6 +231,7 @@ export function SessionConfigSource(props: {
         message={props.message}
         onClose={() => props.onClose()}
         content={props.content}
+        comment={props.comment}
       ></Modal>
     </div>
   );
@@ -241,6 +245,7 @@ function PromptToast(props: {
   setShowSource: (_: boolean) => void;
   message: ChatMessage;
   content?: string;
+  comment?: string;
 }) {
   const chatStore = useChatStore();
   const session = chatStore.currentSession();
@@ -271,6 +276,7 @@ function PromptToast(props: {
           onClose={() => props.setShowSource(false)}
           message={props.message}
           content={props.content}
+          comment={props.comment}
         />
       )}
     </div>
@@ -680,6 +686,7 @@ export function Chat() {
   const isMobileScreen = useMobileScreen();
   const navigate = useNavigate();
   const [content, setcontent] = useState("You have not edited the content");
+  const [comment, setcomment] = useState("No comment.");
   //const [input, setinput] = useState("Can you tell me a food?");
   //const input = "This is a begin";
   const onChatBodyScroll = (e: HTMLElement) => {
@@ -1160,6 +1167,8 @@ export function Chat() {
   //console.log("[The Message is ]" + messages);
   const [showPromptModal, setShowPromptModal] = useState(false);
   const [showSourceDocs, setshowSourceDocs] = useState(false);
+  const [flash, setflash] = useState(true);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   const renameSession = () => {
     const newTopic = prompt(Locale.Chat.Rename, session.topic);
@@ -1396,7 +1405,7 @@ export function Chat() {
 
     setshowrules(true);
   };
-
+  const [iscomment, setiscomment] = useState(false);
   //const isStart = messages.length < 3;
   //const isGroupStart = !isGroup || (isGroup && !isStart);
   // if (isGroupStart) {
@@ -1406,6 +1415,12 @@ export function Chat() {
     if (messages[i].origin_answer !== undefined) {
       // @ts-ignore
       setcontent(messages[i].origin_answer);
+    }
+    if (messages[i].comment !== undefined) {
+      // @ts-ignore
+      setcomment(messages[i].comment);
+    } else {
+      setcomment("No comment.");
     }
     setshowSourceDocs(true);
     setnumber(i);
@@ -1426,24 +1441,6 @@ export function Chat() {
           </div>
         </div>
         <div className="window-actions">
-          {/*{state?.fromGroup && <div>message interval：</div>}*/}
-          {/*{state?.fromGroup && (*/}
-          {/*  <InputRange*/}
-          {/*    title={`${session.groupSpeed ?? 10}min`}*/}
-          {/*    value={session.groupSpeed ?? 1}*/}
-          {/*    min="1"*/}
-          {/*    max="20"*/}
-          {/*    step="1"*/}
-          {/*    onChange={(e) =>*/}
-          {/*      chatStore.updateSpeed(*/}
-          {/*        (session) =>*/}
-          {/*          (session.groupSpeed = Number.parseInt(*/}
-          {/*            e.currentTarget.value,*/}
-          {/*          )),*/}
-          {/*      )*/}
-          {/*    }*/}
-          {/*  ></InputRange>*/}
-          {/*)}*/}
           <div className={"window-action-button" + " " + styles.mobile}>
             <IconButton
               icon={<ReturnIcon />}
@@ -1490,13 +1487,6 @@ export function Chat() {
               />
             </div>
           )}
-          {/*<div className="window-action-button">*/}
-          {/*  <IconButton*/}
-          {/*    icon={<RenameIcon />}*/}
-          {/*    bordered*/}
-          {/*    onClick={renameSession}*/}
-          {/*  />*/}
-          {/*</div>*/}
           <div className="window-action-button">
             <IconButton
               icon={<ExportIcon />}
@@ -1531,6 +1521,7 @@ export function Chat() {
           setShowSource={setshowSourceDocs}
           message={chat_message}
           content={content}
+          comment={comment}
         />
       </div>
 
@@ -1546,8 +1537,23 @@ export function Chat() {
         }}
       >
         {messages.map((message, i) => {
+          const isshow = message.sourceDocs !== undefined;
           //console.log("The render message is  ",messages);
           const isUser = message.role === "user";
+          const showNotes = (index: number) => {
+            message.iscomment = true;
+            setiscomment(true);
+          };
+          const closePopup = () => {
+            message.iscomment = false;
+            setiscomment(false);
+          };
+          const setcomments = (comment: string) => {
+            // alert("lllllll")
+            //alert(comment);
+            message.comment = comment;
+            setcomment(comment);
+          };
           const showActions =
             !isUser &&
             i > 0 &&
@@ -1637,17 +1643,11 @@ export function Chat() {
                         ) : (
                           <>
                             <div
-                              className={styles["chat-mesxsage-top-action"]}
+                              className={styles["chat-message-top-action"]}
                               onClick={() => onDelete(message.id ?? i)}
                             >
                               {Locale.Chat.Actions.Delete}
                             </div>
-                            {/*<div*/}
-                            {/*    className={styles["chat-message-top-action"]}*/}
-                            {/*    onClick={()=> showmessage()}*/}
-                            {/*>*/}
-                            {/*  {Locale.Chat.Actions.Delete}*/}
-                            {/*</div>*/}
                             <div
                               className={styles["chat-message-top-action"]}
                               onClick={() => onResend(message.id ?? i)}
@@ -1683,7 +1683,7 @@ export function Chat() {
                                 >
                                   {Locale.Chat.Actions.Play}
                                 </div>
-                                {isLangchain && !isGroup && (
+                                {isLangchain && !isGroup && isshow && (
                                   <div
                                     className={
                                       styles["chat-message-top-action"]
@@ -1695,7 +1695,6 @@ export function Chat() {
                                     {Locale.Chat.Actions.Show}
                                   </div>
                                 )}
-
                                 {isLangchain && !isGroup && (
                                   <div
                                     className={
@@ -1706,11 +1705,29 @@ export function Chat() {
                                     {Locale.Chat.Actions.Rules}
                                   </div>
                                 )}
+                                {isLangchain && !isGroup && (
+                                  <div
+                                    className={
+                                      styles["chat-message-top-action"]
+                                    }
+                                    onClick={() => {
+                                      showNotes(i);
+                                    }}
+                                  >
+                                    {Locale.Chat.Actions.Notes}
+                                  </div>
+                                )}
                               </>
                             )}
                           </>
                         )}
                       </div>
+                    )}
+                    {(message.iscomment || iscomment) && message.iscomment && (
+                      <PopupContent
+                        onClose={closePopup}
+                        comment={setcomments}
+                      />
                     )}
                     {isEditing && selectedMessageId === message.id ? (
                       <textarea

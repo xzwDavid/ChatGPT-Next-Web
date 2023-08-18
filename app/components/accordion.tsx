@@ -1,24 +1,38 @@
 import React, { useState } from "react";
+import { comment } from "postcss";
 
 interface CollapsibleElementProps {
   message: any;
   content?: string;
+  comment: string;
 }
 
 const CollapsibleElement: ({
   message,
   content,
+  comment,
 }: {
   message: any;
   content?: any;
-}) => JSX.Element = ({ message, content }) => {
+  comment?: any;
+}) => JSX.Element = ({ message, content, comment }) => {
   //const con = content;
   //alert(content);
+  let temp = "";
+  if (comment === undefined) {
+    temp = "No comment.";
+  } else {
+    temp = comment;
+  }
   return (
     <div>
       <>
         <h2>Original answer:</h2>
         <p>{content}</p>
+      </>
+      <>
+        <h2>Comment:</h2>
+        <p>{temp}</p>
       </>
       <></>
       {message.map(

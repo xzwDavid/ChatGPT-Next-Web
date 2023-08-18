@@ -1,0 +1,33 @@
+// PopupContent.scss
+.popup-container {
+  width: 200px;
+  height: 60px;
+  position: relative;
+  top: 20px;
+  left: 830px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+
+  .input-field {
+    width: 100%;
+    resize: vertical;
+    min-height: 50px;
+    padding: 5px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+
+    .comment-button {
+      margin-right: 10px;
+    }
+  }
+  &:hover {
+
+    transform: translateY(-10px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}

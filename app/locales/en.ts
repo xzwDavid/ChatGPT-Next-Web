@@ -13,6 +13,7 @@ const en: RequiredLocaleType = {
   Chat: {
     SubTitle: (count: number) => `${count} messages with ChatGPT`,
     Actions: {
+      Notes: "Notes",
       Show: "Show",
       Play: "Play",
       ChatList: "Go To Chat List",

@@ -20,6 +20,7 @@ const cn = {
   Chat: {
     SubTitle: (count: number) => `与 ChatGPT 的 ${count} 条对话`,
     Actions: {
+      Notes: "评价",
       Show: "显示参考资料",
       Play: "播放",
       ChatList: "查看消息列表",
