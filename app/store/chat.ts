@@ -83,7 +83,6 @@ export const BOT_Group: ChatMessage = createMessage({
 
 function createEmptySession(): ChatSession {
   const val = Date.now() + Math.random();
-  //alert("Here is the "+ val.toString());
   return {
     id: val,
     topic: DEFAULT_TOPIC,
@@ -104,6 +103,7 @@ function createEmptySession(): ChatSession {
   };
 }
 function createEmptySessions(): ChatSession {
+  alert("group");
   //比原函数多加s，区分创建群聊
   return {
     clearContextIndex: 0,
@@ -119,7 +119,6 @@ function createEmptySessions(): ChatSession {
     },
     lastUpdate: Date.now(),
     lastSummarizeIndex: 0,
-
     mask: createEmptyMask(),
     group: true,
     groupMem: 0,
@@ -244,10 +243,14 @@ export const useChatStore = create<ChatStore>()(
       },
 
       newSessions(mask) {
+        //    alert("ll")
         const session = createEmptySessions();
+        //        alert(session.id)
+        //      alert("llllllll")
 
         set(() => ({ globalId: get().globalId + 1 }));
-        session.id = get().globalId;
+        //  alert(session.id);
+        //session.id = get().globalId;
 
         if (mask) {
           session.mask = { ...mask };

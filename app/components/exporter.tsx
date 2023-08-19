@@ -432,7 +432,9 @@ export function ImagePreviewer(props: {
 
   const upload = async () => {
     const session = chatStore.currentSession();
+
     let uuidValue = session.id.toString();
+    alert("file id" + uuidValue);
     let data = new FormData();
 
     // 添加 uuid

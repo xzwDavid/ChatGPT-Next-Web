@@ -1222,6 +1222,8 @@ export function Chat() {
     setisUploading(true);
     const session = chatStore.currentSession();
     let uuidValue = session.id.toString();
+    if (session.group) alert("lllpppoo");
+    alert("The file is" + uuidValue);
     let data = new FormData();
     data.append("uuid", uuidValue);
     if (fileInputRef.current!.files) {
@@ -1237,6 +1239,7 @@ export function Chat() {
   }
   function fileCount() {}
   const uuid = session.id.toString();
+  //alert("file count "+uuid);
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [isListening, setIsListening] = useState(false);
