@@ -28,7 +28,7 @@
 
 
 ## How this Arcticture work?
-Check here
+Check [here](https://github.com/xzwDavid/ChatGPT-Next-Web/blob/latest-chatbot/Arcticture.md)
 
 ## Supported Metrics
 | compatibility | Langchain | Rules | Group | muti-model |
