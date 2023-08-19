@@ -27,8 +27,16 @@
 - 🚀 v2.1 is under test, you can comment with new feature you want
 
 
+## How this Arcticture work?
+Check here
 
-
+## Supported Metrics
+| compatibility | Langchain | Rules | Group | muti-model |
+|---------------|-----------|-------|-------|------------|
+| langchain     |     ✔︎     |  ✔︎   |  ✔︎   |     ✘     |
+| Rules         |     ✔︎     |  ✔︎   |  ✘   |     ✘     |
+| Group         |     ✔︎     |  ✘   |  ✔︎   |     ✔︎     |
+| muti-model    |     ✘     |  ✘   |  ✔︎   |     ✔︎     |
 
 
 ## Deployment and Develop instruction
@@ -54,6 +62,7 @@ yarn build && yarn run start
 # launcher the server
 # follow the instruction there
 ```
+
 ## Screenshots
 
 ![Settings](https://github.com/xzwDavid/ChatGPT-Next-Web/blob/latest-chatbot/public/start.png)
