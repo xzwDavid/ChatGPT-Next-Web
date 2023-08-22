@@ -44,7 +44,7 @@ export function ExportFileCountModel(props: {
 }
 
 async function FetchFileCount(uuid: string): Promise<string[]> {
-  const testPath = "http://localhost:3001/api/fileCount";
+  const testPath = "http://localhost:5000/api/v1/getfileCount";
   const testBody = {
     uuid: uuid,
   };

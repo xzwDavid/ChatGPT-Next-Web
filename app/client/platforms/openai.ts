@@ -215,7 +215,7 @@ export class ChatGPTApi implements LLMApi {
         } else {
           const history = this.getHistory(messages);
           const uuid = options.uuid;
-          const testPath = "http://localhost:3001/api/chat/";
+          //const testPath = "http://localhost:3001/api/chat/";
 
           const testBody = {
             uuid: uuid,
