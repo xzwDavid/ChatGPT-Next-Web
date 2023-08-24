@@ -23,6 +23,7 @@ import { DEFAULT_MASK_AVATAR } from "../store/mask";
 import { api } from "../client/api";
 import { prettyObject } from "../utils/format";
 import { EXPORT_MESSAGE_CLASS_NAME } from "../constant";
+import { use } from "i18next";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -62,10 +63,21 @@ async function FetchFileCount(uuid: string): Promise<string[]> {
 
 function FileExporter(props: { uuid: string }) {
   const [fileCount, setFileCount] = useState<string[]>([]);
+  const [finish, setfinish] = useState(false);
+  let uuid = "None";
+  if (props.uuid !== "-1") {
+    //alert(props.uuid)
+    uuid = props.uuid;
+  }
 
   useEffect(() => {
-    FetchFileCount(props.uuid)
-      .then((data) => setFileCount(data))
+    FetchFileCount(uuid)
+      .then((data) => {
+        setFileCount(data);
+        if (data.length === 0) {
+          setfinish(true);
+        }
+      })
       .catch((error) => {
         console.error("Error:", error);
         // 处理错误
@@ -74,6 +86,7 @@ function FileExporter(props: { uuid: string }) {
 
   return (
     <>
+      {finish && <div>No documents</div>}
       {fileCount.map((file, index) => (
         <div key={index}>{file}</div>
       ))}

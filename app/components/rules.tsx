@@ -45,7 +45,7 @@ export function RulesConfig(props: {
             type="checkbox"
             //checked={}
             onChange={(e) => {
-              alert("hhh");
+              //  alert("hhh");
             }}
           ></input>
         </ListItem>

@@ -12,6 +12,7 @@ import { api, RequestMessage } from "../client/api";
 import { ChatControllerPool } from "../client/controller";
 import { prettyObject } from "../utils/format";
 import { useState } from "react";
+import { useAccessStore } from "@/app/store/access";
 
 export type ChatMessage = RequestMessage & {
   date: string;
@@ -103,8 +104,9 @@ function createEmptySession(): ChatSession {
   };
 }
 function createEmptySessions(): ChatSession {
-  alert("group");
+  //  alert("group");
   //比原函数多加s，区分创建群聊
+
   return {
     clearContextIndex: 0,
     fileUploaded: [],
@@ -127,6 +129,7 @@ function createEmptySessions(): ChatSession {
   };
 }
 interface ChatStore {
+  user_name: string;
   inputContent: string;
   sessions: ChatSession[];
   currentSessionIndex: number;
@@ -180,7 +183,9 @@ export const useChatStore = create<ChatStore>()(
       currentSessionIndex: 0,
       globalId: 0,
       inputContent: "",
+      user_name: "xzw",
       SystemInfos: [],
+
       clearSessions() {
         set(() => ({
           sessions: [createEmptySession()],
@@ -325,7 +330,7 @@ export const useChatStore = create<ChatStore>()(
           session.lastUpdate = Date.now();
         });
         get().updateStat(message);
-        get().summarizeSession();
+        //  get().summarizeSession();
         const msg = get().currentSession().messages;
         const content = msg[msg.length - 1].content;
         //console.log("[The msg is ]"+content);
@@ -445,6 +450,7 @@ export const useChatStore = create<ChatStore>()(
           //alert(uuid);
 
           let prompt = "";
+
           for (let i = chat.messages.length - 1; i >= 0; i--) {
             if (chat.messages[i].role === "assistant") {
               prompt = chat.mask?.context[0]?.content;
@@ -453,8 +459,13 @@ export const useChatStore = create<ChatStore>()(
             }
           }
           console.log("The config is ", modelConfig);
+          //const accessStore = useAccessStore();
+
           api.llm.chat({
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
+            agent_name: session.mask.name,
             messages: sendMessages,
             config: { ...modelConfig, stream: isStreaming },
             prompt: prompt,
@@ -606,8 +617,10 @@ export const useChatStore = create<ChatStore>()(
 
           //const chat_id = get().globalId
           //alert(chat_id);
-          const uuid = chat.id;
-          //alert(uuid);
+          console.log("Here hhhhh", chat);
+
+          const uuid =
+            chat.mask.uuid_mask === -1 ? chat.id : chat.mask.uuid_mask;
 
           let prompt = "";
           for (let i = chat.messages.length - 1; i >= 0; i--) {
@@ -618,9 +631,13 @@ export const useChatStore = create<ChatStore>()(
             }
           }
           console.log("The config is ", modelConfig);
+          //          alert("here")
           api.llm.chat({
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
             messages: sendMessages,
+            agent_name: session.mask.name,
             config: { ...modelConfig, stream: isStreaming },
             prompt: prompt,
             onUpdate(message) {
@@ -736,7 +753,9 @@ export const useChatStore = create<ChatStore>()(
           isStreaming = false;
 
           const chat = get().currentSession();
-          const uuid = chat.id;
+          //const uuid = chat.id;
+          const uuid =
+            chat.mask?.uuid_mask === -1 ? chat.id : chat.mask?.uuid_mask;
           let prompt = "";
           for (let i = chat.messages.length - 1; i >= 0; i--) {
             if (chat.messages[i].role === "assistant") {
@@ -748,8 +767,11 @@ export const useChatStore = create<ChatStore>()(
           console.log("XZW   The config is ", modelConfig);
           api.llm.chat({
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
             messages: content,
             prompt: prompt,
+            agent_name: session.mask.name,
             config: { ...modelConfig, stream: isStreaming },
             onUpdate(message) {
               botMessage.streaming = true;
@@ -923,9 +945,13 @@ export const useChatStore = create<ChatStore>()(
           );
           console.log("[topicMessage] : ", topicMessages);
           const uuid = session.id;
+
           api.llm.chat({
             prompt: "",
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
+            agent_name: session.mask.name,
             messages: topicMessages,
             config: {
               model: "gpt-3.5-turbo",
@@ -982,6 +1008,9 @@ export const useChatStore = create<ChatStore>()(
           //alert("33333");
           api.llm.chat({
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
+            agent_name: session.mask.name,
             prompt: "",
             messages: toBeSummarizedMsgs.concat({
               role: "system",

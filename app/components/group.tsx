@@ -58,7 +58,7 @@ export function Group() {
     setTimeout(() => navigate(Path.Chat), 1);
   };
   const startGroupChat = (mask?: Mask) => {
-    alert("kkkk");
+    //  alert("kkkk");
     chatStore.newSessions(mask);
     setTimeout(() => navigate(Path.Chat, { state: { fromGroup: true } }), 1);
   };

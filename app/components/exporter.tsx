@@ -433,8 +433,11 @@ export function ImagePreviewer(props: {
   const upload = async () => {
     const session = chatStore.currentSession();
 
-    let uuidValue = session.id.toString();
-    alert("file id" + uuidValue);
+    //let uuidValue = session.id.toString();
+    const uuidnum =
+      session.mask.uuid_mask === -1 ? session.id : session.mask.uuid_mask;
+    let uuidValue = uuidnum.toString();
+    //  alert("file id" + uuidValue);
     let data = new FormData();
 
     // 添加 uuid
@@ -453,7 +456,7 @@ export function ImagePreviewer(props: {
       const pdfBlob = pdf.output("blob");
       data.append("files", pdfBlob, `${props.topic}.pdf`);
       data.append("filename", "this is a text");
-      alert("text");
+      //  alert("text");
     } else {
       alert("Upload failure!");
     }

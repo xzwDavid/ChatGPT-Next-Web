@@ -179,6 +179,9 @@ export function SessionConfigModel(props: {
             onClick={() => {
               navigate(Path.Masks);
               setTimeout(() => {
+                if (session.mask.uuid_mask !== undefined) {
+                  session.mask.uuid_mask = session.id;
+                }
                 maskStore.create(session.mask);
               }, 500);
             }}
@@ -810,6 +813,7 @@ export function Chat() {
   };
 
   const AgentsTalk = (userInput: ChatMessage[]) => {
+    console.log("The group talk  is ", session);
     if (session.groupMem !== 0) {
       //alert(session.groupMem);
       alert("Please invite the agents first!!!");
@@ -1221,9 +1225,14 @@ export function Chat() {
   async function handlePostFile() {
     setisUploading(true);
     const session = chatStore.currentSession();
-    let uuidValue = session.id.toString();
-    if (session.group) alert("lllpppoo");
-    alert("The file is" + uuidValue);
+    //let uuidValue = session.id.toString();
+    let uuidValue =
+      session.mask?.uuid_mask === -1
+        ? session.id.toString()
+        : session.mask?.uuid_mask?.toString();
+    //if (session.group) alert("lllpppoo");
+    if (uuidValue === undefined) uuidValue = session.id.toString();
+    //alert("The file is" + uuidValue);
     let data = new FormData();
     data.append("uuid", uuidValue);
     if (fileInputRef.current!.files) {
@@ -1238,9 +1247,14 @@ export function Chat() {
     }
   }
   function fileCount() {}
-  const uuid = session.id.toString();
+  let uuid = session.id.toString();
+  //const uuid = session.mask.uuid_mask === -1 ? session.id.toString():session.mask.uuid_mask.toString();
   //alert("file count "+uuid);
-
+  //console.log("The session ",session);
+  if (session.mask?.uuid_mask !== -1 && session.mask.uuid_mask !== undefined) {
+    if (typeof session.mask.uuid_mask === "number")
+      uuid = session.mask.uuid_mask.toString();
+  }
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
@@ -1429,6 +1443,9 @@ export function Chat() {
     setnumber(i);
   };
   // console.log("messages",messages);
+
+  chatStore.user_name = accessStore.accessCode;
+
   return (
     <div className={styles.chat} key={session.id}>
       <div className="window-header">

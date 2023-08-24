@@ -184,9 +184,9 @@ const cn = {
       NoAccess: "输入 API Key 或访问密码查看余额",
     },
     AccessCode: {
-      Title: "访问密码",
-      SubTitle: "管理员已开启加密访问",
-      Placeholder: "请输入访问密码",
+      Title: "用户名",
+      SubTitle: "请输入你的用户名称",
+      Placeholder: "name",
     },
     Model: "模型 (model)",
     Temperature: {
@@ -257,6 +257,7 @@ const cn = {
       Info: (count: number) => `包含 ${count} 条预设对话`,
       Chat: "对话",
       View: "查看",
+      Docs: "查文件",
       Edit: "编辑",
       Delete: "删除",
       DeleteConfirm: "确认删除？",

@@ -108,14 +108,61 @@ export class ChatGPTApi implements LLMApi {
         let responseText = "";
         let finished = false;
 
-        const finish = () => {
+        const ques = {
+          agent_name: options.agent_name,
+          name: options.name,
+          question: question,
+          group: options.group,
+          uuid: options.uuid,
+          messages,
+          stream: options.config.stream,
+          model: modelConfig.model,
+          temperature: modelConfig.temperature,
+          max_tokens: modelConfig.max_tokens,
+          presence_penalty: modelConfig.presence_penalty,
+        };
+        const quesPayload = {
+          method: "POST",
+          body: JSON.stringify(ques),
+          signal: controller.signal,
+          headers: getHeaders(),
+        };
+
+        const res = await fetch(
+          "http://localhost:5000/api/v1/" + "storequestion",
+          quesPayload,
+        );
+        const m_id = await res.json();
+
+        console.log("The res is ", m_id.content);
+        const finish = async () => {
           if (!finished) {
             options.onFinish(responseText);
             finished = true;
           }
+          const testBody = {
+            uuid: options.uuid,
+            request_id: m_id,
+            agent_name: options.agent_name,
+            name: options.name,
+            group: options.group,
+            response: responseText,
+          };
+          const testPayload = {
+            method: "POST",
+            body: JSON.stringify(testBody),
+            signal: controller.signal,
+            headers: getHeaders(),
+          };
+          const res = await fetch(
+            "http://localhost:5000/api/v1/" + "storeresponse",
+            testPayload,
+          );
+          //alert(responseText);
         };
 
         controller.signal.onabort = finish;
+
         fetchEventSource(chatPath, {
           ...chatPayload,
           async onopen(res) {
@@ -189,12 +236,79 @@ export class ChatGPTApi implements LLMApi {
           openWhenHidden: true,
         });
       } else {
+        //alert(modelConfig.model)
         if (modelConfig.model !== "lang chain(Upload your docs)") {
           //console.log(JSON.stringify(testBody))
 
           try {
             const startTime = new Date();
+
+            let responseText = "";
+            let finished = false;
+
+            const finishno = async () => {
+              const testBody = {
+                agent_name: options.agent_name,
+                name: options.name,
+                group: options.group,
+                request_id: "error",
+                uuid: options.uuid,
+                response: responseText,
+              };
+              const testPayload = {
+                method: "POST",
+                body: JSON.stringify(testBody),
+                signal: controller.signal,
+                headers: getHeaders(),
+              };
+              const res = await fetch(
+                "http://localhost:5000/api/v1/" + "storeresponse",
+                testPayload,
+              );
+              const m_id = await res.json();
+              //alert(responseText);
+            };
+
+            const testBody = {
+              uuid: options.uuid,
+              response: responseText,
+            };
+
+            const testPayload = {
+              method: "POST",
+              body: JSON.stringify(testBody),
+              signal: controller.signal,
+              headers: getHeaders(),
+            };
+            //alert("ooo")
+            const ques = {
+              agent_name: options.agent_name,
+              name: options.name,
+              group: options.group,
+              uuid: options.uuid,
+              question: question,
+              messages,
+              stream: options.config.stream,
+              model: modelConfig.model,
+              temperature: modelConfig.temperature,
+              max_tokens: modelConfig.max_tokens,
+              presence_penalty: modelConfig.presence_penalty,
+            };
+            const quesPayload = {
+              method: "POST",
+              body: JSON.stringify(ques),
+              signal: controller.signal,
+              headers: getHeaders(),
+            };
+
+            const resw = await fetch(
+              "http://localhost:5000/api/v1/" + "storequestion",
+              quesPayload,
+            );
+            //alert(responseText);
+
             const res = await fetch(chatPath, chatPayload);
+
             const endTime = new Date();
             const executionTime = endTime.getTime() - startTime.getTime();
             //alert(executionTime);
@@ -208,11 +322,14 @@ export class ChatGPTApi implements LLMApi {
             const message = this.extractMessage(resJson);
             //const message = resJson.text;
             //alert(message)
+            responseText = message;
+            finishno();
             options.onFinish(message);
           } catch (error) {
             console.error("Request error:", error);
           }
         } else {
+          //alert("poil")
           const history = this.getHistory(messages);
           const uuid = options.uuid;
           //const testPath = "http://localhost:3001/api/chat/";
@@ -220,6 +337,9 @@ export class ChatGPTApi implements LLMApi {
           const testBody = {
             uuid: uuid,
             question: question,
+            agent_name: options.agent_name,
+            name: options.name,
+            group: options.group,
             history: history,
             agent_prompt: options.prompt,
             max_tokens: modelConfig.max_tokens,

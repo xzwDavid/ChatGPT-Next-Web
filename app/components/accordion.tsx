@@ -34,7 +34,6 @@ const CollapsibleElement: ({
         <h2>Comment:</h2>
         <p>{temp}</p>
       </>
-      <></>
       {message.map(
         (
           doc: {
@@ -52,13 +51,16 @@ const CollapsibleElement: ({
               | undefined;
             metadata: {
               source: string;
+              "loc.lines.from": number;
+              "loc.lines.to": number;
             };
           },
           index: React.Key,
         ) => {
           const sourceParts = doc.metadata.source.split("/"); // 假设文件路径中使用的是斜杠“/”
           const lastFolderName = sourceParts[sourceParts.length - 1]; // 获取最后一个文件夹名
-
+          const from = doc.metadata["loc.lines.from"];
+          const to = doc.metadata["loc.lines.to"];
           return (
             <div key={index}>
               <div>
@@ -66,6 +68,10 @@ const CollapsibleElement: ({
                 <p>{doc.pageContent}</p>
                 <h2>Source:</h2>
                 <p>{lastFolderName}</p> {/* 显示最后一个文件夹名 */}
+                <h2>Location</h2>
+                <p>
+                  From Line {from} to {to}
+                </p>
               </div>
             </div>
           );

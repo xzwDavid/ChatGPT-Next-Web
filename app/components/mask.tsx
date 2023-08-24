@@ -22,12 +22,13 @@ import Locale, { AllLangs, ALL_LANG_OPTIONS, Lang } from "../locales";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import chatStyle from "./chat.module.scss";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { downloadAs, readFromFile } from "../utils";
 import { Updater } from "../typing";
 import { ModelConfigList } from "./model-config";
 import { FileName, Path } from "../constant";
 import { BUILTIN_MASK_STORE } from "../masks";
+import { ExportFileCountModel } from "@/app/components/filecount";
 
 interface numStore {
   memNum: number;
@@ -280,10 +281,10 @@ export function ContextPrompts(props: {
 
 export function MaskPage() {
   const navigate = useNavigate();
-
+  const [uuid, setuuid] = useState("None");
   const maskStore = useMaskStore();
   const chatStore = useChatStore();
-
+  const [showCount, setShowCount] = useState(false);
   const [filterLang, setFilterLang] = useState<Lang>();
 
   const allMasks = maskStore
@@ -472,6 +473,24 @@ export function MaskPage() {
                       }}
                     />
                   )}
+                  {m.builtin ? (
+                    <IconButton
+                      icon={<EyeIcon />}
+                      text={Locale.Mask.Item.View}
+                      onClick={() => setEditingMaskId(m.id)}
+                    />
+                  ) : (
+                    <IconButton
+                      icon={<EyeIcon />}
+                      text={Locale.Mask.Item.Docs}
+                      onClick={() => {
+                        setuuid(m.uuid_mask.toString());
+                        //alert(uuid);
+                        console.log(masks);
+                        setShowCount(true);
+                      }}
+                    />
+                  )}
                   {!state?.fromgroup && (
                     <IconButton
                       icon={<AddIcon />}
@@ -553,6 +572,9 @@ export function MaskPage() {
             />
           </Modal>
         </div>
+      )}
+      {showCount && (
+        <ExportFileCountModel onClose={() => setShowCount(false)} uuid={uuid} />
       )}
     </ErrorBoundary>
   );

@@ -178,9 +178,9 @@ const en: RequiredLocaleType = {
       NoAccess: "Enter API Key to check balance",
     },
     AccessCode: {
-      Title: "Access Code",
-      SubTitle: "Access control enabled",
-      Placeholder: "Need Access Code",
+      Title: "User name",
+      SubTitle: "Input your name",
+      Placeholder: "Name",
     },
     Model: "Model",
     Temperature: {
@@ -252,6 +252,7 @@ const en: RequiredLocaleType = {
       Info: (count: number) => `${count} prompts`,
       Chat: "Chat",
       View: "View",
+      Docs: "Docs",
       Edit: "Edit",
       Delete: "Delete",
       DeleteConfirm: "Confirm to delete?",

@@ -26,6 +26,9 @@ export interface LLMConfig {
 
 export interface ChatOptions {
   messages: RequestMessage[];
+  group?: boolean;
+  name?: string;
+  agent_name?: string;
   prompt: string;
   config: LLMConfig;
   uuid: number;
