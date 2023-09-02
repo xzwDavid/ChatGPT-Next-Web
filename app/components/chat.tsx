@@ -85,6 +85,7 @@ import { RulesConfig } from "@/app/components/rules";
 import { PopupContent } from "./notes";
 import { comment } from "postcss";
 import { getHeaders } from "@/app/client/api";
+import { update } from "immutable";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -1621,6 +1622,11 @@ export function Chat() {
             setcontent(message.content);
             message.content = editingContent;
             setisEditing(false);
+            //session.messages[i].content = message.content;
+
+            chatStore.updateMessage(sessionIndex, index_message, (message) => {
+              if (message) message.content = editingContent;
+            });
             const controller = new AbortController();
             const testBody = {
               uuid: message.id,

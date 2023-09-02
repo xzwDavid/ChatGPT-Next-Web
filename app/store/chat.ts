@@ -650,7 +650,7 @@ export const useChatStore = create<ChatStore>()(
               set(() => ({}));
             },
             onFinish(message, sourceDocs?, message_id?: string) {
-              //alert("triggered1!!");
+              alert(message_id);
               botMessage.streaming = false;
               //alert(botMessage.content);
               if (message) {

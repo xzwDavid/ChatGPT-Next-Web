@@ -74,9 +74,14 @@ export class ChatGPTApi implements LLMApi {
         model: options.config.model,
       },
     };
+    const messages2 = options.messages.map((v) => ({
+      role: v.role,
+      content: v.content,
+      // message_id: v.message_id,
+    }));
 
     const requestPayload = {
-      messages,
+      messages: messages2,
       stream: options.config.stream,
       model: modelConfig.model,
       temperature: modelConfig.temperature,
@@ -84,7 +89,6 @@ export class ChatGPTApi implements LLMApi {
       presence_penalty: modelConfig.presence_penalty,
     };
 
-    console.log("[Request] openai payload: ", requestPayload);
     const shouldStream = !!options.config.stream;
     const controller = new AbortController();
     options.onController?.(controller);
@@ -137,10 +141,6 @@ export class ChatGPTApi implements LLMApi {
 
         console.log("The res is ", m_id.content);
         const finish = async () => {
-          if (!finished) {
-            options.onFinish(responseText);
-            finished = true;
-          }
           const testBody = {
             uuid: options.uuid,
             request_id: m_id,
@@ -159,8 +159,15 @@ export class ChatGPTApi implements LLMApi {
             "http://localhost:5000/api/v1/" + "storeresponse",
             testPayload,
           );
-          //console.log(res)
           const re_id = await res.json();
+
+          if (!finished) {
+            // alert(re_id.content)
+            const message_id = re_id.content;
+            //alert(typeof message_id)
+            options.onFinish(responseText, undefined, message_id);
+            finished = true;
+          }
 
           console.log("The res id is ", re_id.content);
           //alert(responseText);
@@ -173,12 +180,6 @@ export class ChatGPTApi implements LLMApi {
           async onopen(res) {
             clearTimeout(requestTimeoutId);
             const contentType = res.headers.get("content-type");
-            // console.log(
-            //   "[OpenAI] request response content type: ",
-            //   contentType,
-            // );
-
-            //alert(question)
             if (contentType?.startsWith("text/plain")) {
               responseText = await res.clone().text();
               return finish();
@@ -398,7 +399,7 @@ export class ChatGPTApi implements LLMApi {
             const message = resJson.text;
             const sourceDocs = resJson.sourceDocuments;
             const message_id = resJson.response_id;
-            messages[messages.length - 1].message_id;
+            // messages[messages.length - 1].message_id;
             //console.log("The res id is ",resJson.response_id)
             console.log("The Docs is ", sourceDocs);
             //alert(message)

@@ -11,7 +11,7 @@ export type ChatModel = ModelType;
 export interface RequestMessage {
   role: MessageRole;
   content: string;
-  message_id: string;
+  message_id?: string;
   maskId: number;
 }
 
