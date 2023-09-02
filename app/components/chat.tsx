@@ -84,6 +84,7 @@ import CollapsibleElement from "@/app/components/accordion";
 import { RulesConfig } from "@/app/components/rules";
 import { PopupContent } from "./notes";
 import { comment } from "postcss";
+import { getHeaders } from "@/app/client/api";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -1615,17 +1616,27 @@ export function Chat() {
             }
           };
 
-          const saveContent = () => {
-            //             const newDoc = new Document({
-            //               pageContent: message.content,
-            //               ,
-            //             });
-            //
-            // // 将新的 Document 实例加入 sourceDocs 数组
-            //             message.sourceDocs?.push(newDoc);
+          const saveContent = async () => {
+            //alert(message.message_id)
             setcontent(message.content);
             message.content = editingContent;
             setisEditing(false);
+            const controller = new AbortController();
+            const testBody = {
+              uuid: message.id,
+              response_id: message.message_id,
+              content: editingContent,
+            };
+            const testPayload = {
+              method: "POST",
+              body: JSON.stringify(testBody),
+              signal: controller.signal,
+              headers: getHeaders(),
+            };
+            const res = await fetch(
+              "http://localhost:5000/api/v1/" + "editResponse",
+              testPayload,
+            );
           };
 
           return (

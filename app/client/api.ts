@@ -11,7 +11,7 @@ export type ChatModel = ModelType;
 export interface RequestMessage {
   role: MessageRole;
   content: string;
-
+  message_id: string;
   maskId: number;
 }
 
@@ -33,7 +33,11 @@ export interface ChatOptions {
   config: LLMConfig;
   uuid: number;
   onUpdate?: (message: string, chunk: string) => void;
-  onFinish: (message: string, sourceDocs?: Document[]) => void;
+  onFinish: (
+    message: string,
+    sourceDocs?: Document[],
+    message_id?: string,
+  ) => void;
   onError?: (err: Error) => void;
   onController?: (controller: AbortController) => void;
 }

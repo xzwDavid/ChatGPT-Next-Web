@@ -39,7 +39,7 @@ export function createMessage(override: Partial<ChatMessage>): ChatMessage {
     date: new Date().toLocaleString(),
     role: "user",
     content: "",
-
+    message_id: "-1",
     maskId: 0,
 
     ...override,
@@ -476,7 +476,7 @@ export const useChatStore = create<ChatStore>()(
               }
               set(() => ({}));
             },
-            onFinish(message, sourceDocs?) {
+            onFinish(message, sourceDocs?, message_id?: string) {
               //alert("triggered1!!");
               botMessage.streaming = false;
               //alert(botMessage.content);
@@ -508,7 +508,9 @@ export const useChatStore = create<ChatStore>()(
 
                 get().onNewMessage(botMessage);
               }
-
+              if (message_id) {
+                botMessage.message_id = message_id;
+              }
               ChatControllerPool.remove(
                 sessionIndex,
                 botMessage.id ?? messageIndex,
@@ -647,7 +649,7 @@ export const useChatStore = create<ChatStore>()(
               }
               set(() => ({}));
             },
-            onFinish(message, sourceDocs?) {
+            onFinish(message, sourceDocs?, message_id?: string) {
               //alert("triggered1!!");
               botMessage.streaming = false;
               //alert(botMessage.content);
@@ -661,7 +663,9 @@ export const useChatStore = create<ChatStore>()(
 
                 get().onNewMessage(botMessage);
               }
-
+              if (message_id) {
+                botMessage.message_id = message_id;
+              }
               ChatControllerPool.remove(
                 sessionIndex,
                 botMessage.id ?? messageIndex,
@@ -780,7 +784,7 @@ export const useChatStore = create<ChatStore>()(
               }
               set(() => ({}));
             },
-            onFinish(message, sourceDocs?) {
+            onFinish(message, sourceDocs?, message_id?: string) {
               //alert("triggered!!");
               set((state) => ({
                 ...state,
@@ -801,6 +805,11 @@ export const useChatStore = create<ChatStore>()(
 
                 get().onNewMessage(botMessage);
               }
+
+              if (message_id) {
+                botMessage.message_id = message_id;
+              }
+
               ChatControllerPool.remove(
                 sessionIndex,
                 botMessage.id ?? messageIndex,
@@ -1016,7 +1025,7 @@ export const useChatStore = create<ChatStore>()(
               role: "system",
               content: Locale.Store.Prompt.Summarize,
               date: "",
-
+              message_id: "-1",
               maskId: 0,
             }),
             config: { ...modelConfig, stream: true },

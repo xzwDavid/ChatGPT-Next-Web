@@ -64,6 +64,7 @@ export class ChatGPTApi implements LLMApi {
     const messages = options.messages.map((v) => ({
       role: v.role,
       content: v.content,
+      message_id: v.message_id,
     }));
 
     const modelConfig = {
@@ -158,6 +159,10 @@ export class ChatGPTApi implements LLMApi {
             "http://localhost:5000/api/v1/" + "storeresponse",
             testPayload,
           );
+          //console.log(res)
+          const re_id = await res.json();
+
+          console.log("The res id is ", re_id.content);
           //alert(responseText);
         };
 
@@ -247,12 +252,26 @@ export class ChatGPTApi implements LLMApi {
             let finished = false;
 
             const finishno = async () => {
+              // const testBody = {
+              //   agent_name: options.agent_name,
+              //   name: options.name,
+              //   group: options.group,
+              //   request_id: "error",
+              //   uuid: options.uuid,
+              //   response: responseText,
+              // };
+              // const testPayload = {
+              //   method: "POST",
+              //   body: JSON.stringify(testBody),
+              //   signal: controller.signal,
+              //   headers: getHeaders(),
+              // };
               const testBody = {
+                uuid: options.uuid,
+                request_id: m_id,
                 agent_name: options.agent_name,
                 name: options.name,
                 group: options.group,
-                request_id: "error",
-                uuid: options.uuid,
                 response: responseText,
               };
               const testPayload = {
@@ -265,7 +284,8 @@ export class ChatGPTApi implements LLMApi {
                 "http://localhost:5000/api/v1/" + "storeresponse",
                 testPayload,
               );
-              const m_id = await res.json();
+              console.log(res);
+
               //alert(responseText);
             };
 
@@ -306,7 +326,7 @@ export class ChatGPTApi implements LLMApi {
               quesPayload,
             );
             //alert(responseText);
-
+            const m_id = await resw.json();
             const res = await fetch(chatPath, chatPayload);
 
             const endTime = new Date();
@@ -323,8 +343,9 @@ export class ChatGPTApi implements LLMApi {
             //const message = resJson.text;
             //alert(message)
             responseText = message;
+            const message_id = resJson.response_id;
             finishno();
-            options.onFinish(message);
+            options.onFinish(message, message_id);
           } catch (error) {
             console.error("Request error:", error);
           }
@@ -345,7 +366,7 @@ export class ChatGPTApi implements LLMApi {
             max_tokens: modelConfig.max_tokens,
             presence_penalty: modelConfig.presence_penalty,
           };
-
+          console.log("The question here is", testBody);
           console.log(testBody);
           const testPayload = {
             method: "POST",
@@ -365,6 +386,7 @@ export class ChatGPTApi implements LLMApi {
               testPayload,
             );
 
+            //console.log("The res is ",typeof res);
             //const res = await ResponseController.getResponse(testPayload)
             //console.log("{The res is }", res);
             clearTimeout(requestTimeoutId);
@@ -375,10 +397,12 @@ export class ChatGPTApi implements LLMApi {
             const resJson = await res.json();
             const message = resJson.text;
             const sourceDocs = resJson.sourceDocuments;
-
+            const message_id = resJson.response_id;
+            messages[messages.length - 1].message_id;
+            //console.log("The res id is ",resJson.response_id)
             console.log("The Docs is ", sourceDocs);
             //alert(message)
-            options.onFinish(message, sourceDocs);
+            options.onFinish(message, sourceDocs, message_id);
           } catch (error) {
             console.error("Request error:", error);
           }
@@ -389,6 +413,7 @@ export class ChatGPTApi implements LLMApi {
       options.onError?.(e as Error);
     }
   }
+
   async usage() {
     const formatDate = (d: Date) =>
       `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, "0")}-${d
