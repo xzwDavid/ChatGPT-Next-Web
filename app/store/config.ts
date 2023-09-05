@@ -88,6 +88,10 @@ export const ALL_MODELS = [
     name: "lang chain(Upload your docs)", //lang chain
     available: true,
   },
+  {
+    name: "lang chain(Define Agents you want)", //lang chain
+    available: true,
+  },
   // {
   //   name: "chatPDF", //chatPDF
   //   available: false,

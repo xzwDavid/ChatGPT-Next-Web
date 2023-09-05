@@ -147,6 +147,7 @@ interface ChatStore {
     maskId: number,
     isGroup?: boolean,
     isRule1?: boolean,
+    mask_uuid?: number,
     setResponse?: React.Dispatch<React.SetStateAction<string>>,
     setTempMessages?: React.Dispatch<React.SetStateAction<string[]>>,
     modelConf?: ModelConfig,
@@ -355,6 +356,7 @@ export const useChatStore = create<ChatStore>()(
         maskId: number,
         isGroup?: boolean,
         isRule1?: boolean,
+        mask_uuid?: number,
         setResponse?: React.Dispatch<React.SetStateAction<string>>,
         setTempMessages?: React.Dispatch<React.SetStateAction<string[]>>,
         modelConf?: ModelConfig,
@@ -375,7 +377,7 @@ export const useChatStore = create<ChatStore>()(
 
         if (isRule1 && typeof content === "string") {
           const session = get().currentSession();
-          //const masks = useMaskStore
+          // const masks = useMaskStore.getAll()
           let modelConfig;
           if (!modelConf) {
             modelConfig = session.mask.modelConfig;
@@ -435,7 +437,7 @@ export const useChatStore = create<ChatStore>()(
 
           let isStreaming = true;
           //alert(modelConfig.model);
-          if (modelConfig.model === "lang chain(Upload your docs)") {
+          if (modelConfig.model !== "gpt-3.5-turbo(Free talk)") {
             isStreaming = false;
           }
 
@@ -608,7 +610,7 @@ export const useChatStore = create<ChatStore>()(
           });
           let isStreaming = true;
           //alert(modelConfig.model);
-          if (modelConfig.model === "lang chain(Upload your docs)") {
+          if (modelConfig.model !== "gpt-3.5-turbo(Free talk)") {
             isStreaming = false;
           }
 
@@ -751,15 +753,22 @@ export const useChatStore = create<ChatStore>()(
           //});
           let isStreaming = true;
           //alert(modelConfig.model);
-          if (modelConfig.model === "lang chain(Upload your docs)") {
+          if (modelConfig.model !== "gpt-3.5-turbo(Free talk)") {
             isStreaming = false;
           }
           isStreaming = false;
 
           const chat = get().currentSession();
           //const uuid = chat.id;
-          const uuid =
+          let uuid =
             chat.mask?.uuid_mask === -1 ? chat.id : chat.mask?.uuid_mask;
+          if (mask_uuid) {
+            if (chat.group && mask_uuid != -1) {
+              uuid = mask_uuid;
+              // alert(uuid)
+            }
+          }
+
           let prompt = "";
           for (let i = chat.messages.length - 1; i >= 0; i--) {
             if (chat.messages[i].role === "assistant") {

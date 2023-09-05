@@ -840,12 +840,18 @@ export function Chat() {
     const modelConfig_ = model.modelConfig;
 
     setIsLoading(true);
+    const mask_id = session.maskId[index_new];
+    const allMasks = maskStore.getAll();
+    console.log("All masks ", allMasks);
+    console.log("Mask Id ", mask_id);
+    const tar_mask = allMasks.filter((m) => m.id === mask_id);
     chatStore
       .onUserInput(
         userInput,
-        session.maskId[index_new],
+        mask_id,
         isGroup,
         Locale.myRuleBase.Rule1.enabled,
+        tar_mask[0].uuid_mask,
         setresponse,
         setTempMessage,
         modelConfig_,
@@ -906,7 +912,15 @@ export function Chat() {
   const Rule1Talk = async (userInput: string) => {
     if (tempMessage.length === 0) {
       await chatStore
-        .onUserInput(userInput, 0, isGroup, true, setresponse, setTempMessage)
+        .onUserInput(
+          userInput,
+          0,
+          isGroup,
+          true,
+          -1,
+          setresponse,
+          setTempMessage,
+        )
         .then(() => {
           setIsLoading(false);
         });
@@ -1213,7 +1227,7 @@ export function Chat() {
   useEffect(() => {
     const sessions = chatStore.currentSession();
     const model = sessions.mask.modelConfig.model;
-    if (model === "lang chain(Upload your docs)") {
+    if (model !== "gpt-3.5-turbo(Free talk)") {
       setisLangchain(true);
     }
   }, []);

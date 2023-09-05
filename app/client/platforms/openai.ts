@@ -23,24 +23,24 @@ export class ChatGPTApi implements LLMApi {
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i];
       const { role, content } = message;
-
-      if (role === "system") {
-        if (systemContent !== null) {
-          history.push([systemContent, ""]);
-          systemContent = null;
-        }
-      } else if (role === "user") {
-        const nextMessage = messages[i + 1];
-        if (nextMessage && nextMessage.role === "user") {
-          history.push([content, nextMessage.content]);
-          i++; // 跳过下一个消息，因为已经处理了
-        } else {
-          history.push([content, ""]);
-        }
-      } else {
-        // 其他角色的消息处理逻辑
-        // 如果有需要，请根据需求进行修改或添加
-      }
+      history.push([role, content]);
+      // if (role === "system") {
+      //   if (systemContent !== null) {
+      //     history.push(["system", systemContent]);
+      //     systemContent = null;
+      //   }
+      // } else if (role === "user") {
+      //   const nextMessage = messages[i + 1];
+      //   if (nextMessage && nextMessage.role === "user") {
+      //     history.push([content, nextMessage.content]);
+      //     i++; // 跳过下一个消息，因为已经处理了
+      //   } else {
+      //     history.push([content, ""]);
+      //   }
+      // } else {
+      //   // 其他角色的消息处理逻辑
+      //   // 如果有需要，请根据需求进行修改或添加
+      // }
     }
 
     return history;
@@ -243,9 +243,7 @@ export class ChatGPTApi implements LLMApi {
         });
       } else {
         //alert(modelConfig.model)
-        if (modelConfig.model !== "lang chain(Upload your docs)") {
-          //console.log(JSON.stringify(testBody))
-
+        if (modelConfig.model === "gpt-3.5-turbo(Free talk)") {
           try {
             const startTime = new Date();
 
@@ -355,8 +353,12 @@ export class ChatGPTApi implements LLMApi {
           const history = this.getHistory(messages);
           const uuid = options.uuid;
           //const testPath = "http://localhost:3001/api/chat/";
-
+          console.log("final message ", messages);
+          console.log("final history", history);
+          const is_agents =
+            modelConfig.model !== "lang chain(Upload your docs)";
           const testBody = {
+            is_agents: is_agents,
             uuid: uuid,
             question: question,
             agent_name: options.agent_name,
@@ -382,14 +384,11 @@ export class ChatGPTApi implements LLMApi {
             //alert("langchain")
             //alert("kkkk")
             //const res = await fetch(testPath, testPayload);
+
             const res = await fetch(
               "http://localhost:5000/api/v1/" + "getresponse",
               testPayload,
             );
-
-            //console.log("The res is ",typeof res);
-            //const res = await ResponseController.getResponse(testPayload)
-            //console.log("{The res is }", res);
             clearTimeout(requestTimeoutId);
 
             if (!res.ok) {
