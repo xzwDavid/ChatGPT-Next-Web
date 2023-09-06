@@ -14,7 +14,7 @@ export default class ResponseController {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v1/" + "getresponse",
+        "http://18.116.115.123:5000/api/v1/" + "getresponse",
         request,
       );
 
