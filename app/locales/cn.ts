@@ -268,6 +268,7 @@ const cn = {
         `编辑预设面具 ${readonly ? "（只读）" : ""}`,
       Download: "下载预设",
       Clone: "克隆预设",
+      Done: "设置完成",
     },
     Config: {
       Avatar: "角色头像",

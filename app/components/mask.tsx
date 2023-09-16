@@ -79,6 +79,7 @@ export function MaskConfig(props: {
         context={props.mask.context}
         updateContext={(updater) => {
           const context = props.mask.context.slice();
+          console.log("The context ", context);
           updater(context);
           props.updateMask((mask) => (mask.context = context));
         }}
@@ -234,7 +235,13 @@ export function ContextPrompts(props: {
   const context = props.context;
 
   const addContextPrompt = (prompt: ChatMessage) => {
-    props.updateContext((context) => context.push(prompt));
+    props.updateContext((context) => {
+      if (context.length === 0) {
+        prompt.content =
+          "Let's play this game. We are in the library now, I can help you with any question you want to know.";
+      }
+      context.push(prompt);
+    });
   };
 
   const removeContextPrompt = (i: number) => {
@@ -538,28 +545,30 @@ export function MaskPage() {
             title={Locale.Mask.EditModal.Title(editingMask?.builtin)}
             onClose={closeMaskModal}
             actions={[
-              <IconButton
-                icon={<DownloadIcon />}
-                text={Locale.Mask.EditModal.Download}
-                key="export"
-                bordered
-                onClick={() =>
-                  downloadAs(
-                    JSON.stringify(editingMask),
-                    `${editingMask.name}.json`,
-                  )
-                }
-              />,
+              // <IconButton
+              //   icon={<DownloadIcon />}
+              //   text={Locale.Mask.EditModal.Download}
+              //   key="export"
+              //   bordered
+              //   onClick={() =>
+              //     downloadAs(
+              //       JSON.stringify(editingMask),
+              //       `${editingMask.name}.json`,
+              //     )
+              //   }
+              // />,
               <IconButton
                 key="copy"
                 icon={<CopyIcon />}
                 bordered
-                text={Locale.Mask.EditModal.Clone}
-                onClick={() => {
-                  navigate(Path.Masks);
-                  maskStore.create(editingMask);
-                  setEditingMaskId(undefined);
-                }}
+                text={Locale.Mask.EditModal.Done}
+                onClick={
+                  //() => {
+                  // navigate(Path.Masks);
+                  // maskStore.create(editingMask);
+                  // setEditingMaskId(undefined);
+                  closeMaskModal
+                } //}
               />,
             ]}
           >

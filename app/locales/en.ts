@@ -263,6 +263,7 @@ const en: RequiredLocaleType = {
         `Edit Prompt Template ${readonly ? "(readonly)" : ""}`,
       Download: "Download",
       Clone: "Clone",
+      Done: "Done",
     },
     Config: {
       Avatar: "Bot Avatar",
