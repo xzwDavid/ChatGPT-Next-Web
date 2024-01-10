@@ -80,6 +80,7 @@ import Height = Property.Height;
 import ResponseController from "@/app/api/controller/ResponseController";
 import { BUILTIN_MASK_STORE } from "../masks";
 import "./circle.scss";
+
 import CollapsibleElement from "@/app/components/accordion";
 import { RulesConfig } from "@/app/components/rules";
 import { PopupContent } from "./notes";
