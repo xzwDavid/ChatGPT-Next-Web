@@ -13,6 +13,9 @@ const en: RequiredLocaleType = {
   Chat: {
     SubTitle: (count: number) => `${count} messages with ChatGPT`,
     Actions: {
+      Notes: "Notes",
+      Show: "Show",
+      Play: "Play",
       ChatList: "Go To Chat List",
       CompressedHistory: "Compressed History Memory Prompt",
       Export: "Export All Messages as Markdown",
@@ -23,6 +26,7 @@ const en: RequiredLocaleType = {
       Delete: "Delete",
       Edit: "Edit",
       Save: "Save",
+      Rules: "Rules",
     },
     Uploading: "Uploading",
     Rename: "Rename Chat",
@@ -161,7 +165,7 @@ const en: RequiredLocaleType = {
     },
     groupMem: {
       Placeholder: "please input the number of agents",
-      PlaceholderName: "please input the name of group",
+      PlaceholderName: "input a name",
       PlaceholderUser: "please input the number of users",
     },
     Usage: {
@@ -174,9 +178,9 @@ const en: RequiredLocaleType = {
       NoAccess: "Enter API Key to check balance",
     },
     AccessCode: {
-      Title: "Access Code",
-      SubTitle: "Access control enabled",
-      Placeholder: "Need Access Code",
+      Title: "User name",
+      SubTitle: "Input your name",
+      Placeholder: "Name",
     },
     Model: "Model",
     Temperature: {
@@ -194,6 +198,7 @@ const en: RequiredLocaleType = {
     },
   },
   Store: {
+    GroupDefault: `Please click on the ➕ inside the navigation bar first, then invite the Agents you want to join this group chat. After that, enter the scenario you wish to chat about in the chat box, and click ▷ to start the conversation."`,
     DefaultTopic: "New Conversation",
     BotHello: "Hello! How can I assist you today?",
     Error: "Something went wrong, please try again later.",
@@ -212,7 +217,9 @@ const en: RequiredLocaleType = {
   },
   Context: {
     Toast: (x: any) => `With ${x} contextual prompts`,
+    Source: "Reference",
     Edit: "Contextual and Memory Prompts",
+    Rules: "Current Rules",
     Add: "Add a Prompt",
     Clear: "Context Cleared",
     Revert: "Revert",
@@ -222,6 +229,16 @@ const en: RequiredLocaleType = {
   },
   Plugin: {
     Name: "Plugin",
+  },
+  myRuleBase: {
+    Rule1: {
+      description: "Agents should answer the question step by step",
+      enabled: false,
+    },
+    Rule2: {
+      description: "Agents should answer the question concisely",
+      enabled: false,
+    },
   },
   Mask: {
     Name: "Agents",
@@ -235,6 +252,7 @@ const en: RequiredLocaleType = {
       Info: (count: number) => `${count} prompts`,
       Chat: "Chat",
       View: "View",
+      Docs: "Docs",
       Edit: "Edit",
       Delete: "Delete",
       DeleteConfirm: "Confirm to delete?",
@@ -245,6 +263,7 @@ const en: RequiredLocaleType = {
         `Edit Prompt Template ${readonly ? "(readonly)" : ""}`,
       Download: "Download",
       Clone: "Clone",
+      Done: "Done",
     },
     Config: {
       Avatar: "Bot Avatar",
@@ -263,8 +282,8 @@ const en: RequiredLocaleType = {
   NewChat: {
     Return: "Return",
     Skip: "Just Start",
-    Title: "Pick a Mask",
-    SubTitle: "Chat with the Soul behind the Mask",
+    Title: "Pick a Agents",
+    SubTitle: "Chat with the Soul behind the Agents",
     More: "Find More",
     NotShow: "Never Show Again",
     ConfirmNoShow: "Confirm to disable？You can enable it in settings later.",

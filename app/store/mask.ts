@@ -16,6 +16,7 @@ export type Mask = {
   modelConfig: ModelConfig;
   lang: Lang;
   builtin: boolean;
+  uuid_mask: number;
 };
 
 export const DEFAULT_MASK_STATE = {
@@ -44,7 +45,9 @@ export const createEmptyMask = () =>
     syncGlobalConfig: true, // use global config as default
     modelConfig: { ...useAppConfig.getState().modelConfig },
     lang: getLang(),
+    hideContext: true,
     builtin: false,
+    uuid_mask: -1,
   } as Mask);
 
 export const useMaskStore = create<MaskStore>()(
@@ -62,6 +65,12 @@ export const useMaskStore = create<MaskStore>()(
           id,
           builtin: false,
         };
+        if (
+          typeof mask?.uuid_mask === "number" &&
+          mask.uuid_mask !== undefined
+        ) {
+          masks[id].uuid_mask = mask.uuid_mask;
+        }
 
         set(() => ({ masks }));
 

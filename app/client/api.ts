@@ -1,7 +1,7 @@
 import { ACCESS_CODE_PREFIX } from "../constant";
 import { ChatMessage, ModelConfig, ModelType, useAccessStore } from "../store";
 import { ChatGPTApi } from "./platforms/openai";
-
+import { Document } from "langchain/document";
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
 
@@ -11,9 +11,8 @@ export type ChatModel = ModelType;
 export interface RequestMessage {
   role: MessageRole;
   content: string;
-
+  message_id?: string;
   maskId: number;
-
 }
 
 export interface LLMConfig {
@@ -27,10 +26,18 @@ export interface LLMConfig {
 
 export interface ChatOptions {
   messages: RequestMessage[];
+  group?: boolean;
+  name?: string;
+  agent_name?: string;
+  prompt: string;
   config: LLMConfig;
   uuid: number;
   onUpdate?: (message: string, chunk: string) => void;
-  onFinish: (message: string) => void;
+  onFinish: (
+    message: string,
+    sourceDocs?: Document[],
+    message_id?: string,
+  ) => void;
   onError?: (err: Error) => void;
   onController?: (controller: AbortController) => void;
 }

@@ -58,6 +58,7 @@ export function Group() {
     setTimeout(() => navigate(Path.Chat), 1);
   };
   const startGroupChat = (mask?: Mask) => {
+    //  alert("kkkk");
     chatStore.newSessions(mask);
     setTimeout(() => navigate(Path.Chat, { state: { fromGroup: true } }), 1);
   };
@@ -78,6 +79,7 @@ export function Group() {
   };
   const handleInputChangeNum = (event: any) => {
     setInputValuenum(event.target.value);
+
     // 在这里可以将输入的内容保存到数据库或发送给服务器等操作
   };
   const session = chatStore.currentSession();
@@ -85,9 +87,7 @@ export function Group() {
     chatStore.updateCurrentSession((session) => (session.topic = inputValue));
   };
   const reNum = () => {
-    chatStore.updateNum(
-      (session) => (session.groupMem = inputValuenum - inputValuenumUser),
-    );
+    chatStore.updateNum((session) => (session.groupMem = inputValuenum));
   };
   return (
     <div className={styles["new-chat"]}>
@@ -117,14 +117,14 @@ export function Group() {
                 onChange={handleInputChange}
               ></input>
             </ListItem>
-            <ListItem title={Locale.Settings.groupUser}>
-              <input
-                value={inputValuenumUser}
-                type="text"
-                placeholder={Locale.Settings.groupMem.PlaceholderUser}
-                onChange={handleInputChangeUser}
-              ></input>
-            </ListItem>
+            {/*<ListItem title={Locale.Settings.groupUser}>*/}
+            {/*  <input*/}
+            {/*    value={inputValuenumUser}*/}
+            {/*    type="text"*/}
+            {/*    placeholder={Locale.Settings.groupMem.PlaceholderUser}*/}
+            {/*    onChange={handleInputChangeUser}*/}
+            {/*  ></input>*/}
+            {/*</ListItem>*/}
           </List>
         </div>
 

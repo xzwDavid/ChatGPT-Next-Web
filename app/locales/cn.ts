@@ -1,5 +1,13 @@
 import { SubmitKey } from "../store/config";
-
+import AddIcon from "../icons/add.svg";
+import StartIcon from "../icons/start.svg";
+interface Rule {
+  description: string;
+  enabled: boolean;
+}
+interface RuleBase {
+  [ruleName: string]: Rule;
+}
 const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
@@ -12,6 +20,9 @@ const cn = {
   Chat: {
     SubTitle: (count: number) => `与 ChatGPT 的 ${count} 条对话`,
     Actions: {
+      Notes: "评价",
+      Show: "显示参考资料",
+      Play: "播放",
       ChatList: "查看消息列表",
       CompressedHistory: "查看压缩后的历史 Prompt",
       Export: "导出聊天记录",
@@ -22,6 +33,7 @@ const cn = {
       Delete: "删除",
       Edit: "修改",
       Save: "修改完成",
+      Rules: "显示规则",
     },
     Uploading: "Uploading",
     Rename: "重命名对话",
@@ -172,9 +184,9 @@ const cn = {
       NoAccess: "输入 API Key 或访问密码查看余额",
     },
     AccessCode: {
-      Title: "访问密码",
-      SubTitle: "管理员已开启加密访问",
-      Placeholder: "请输入访问密码",
+      Title: "用户名",
+      SubTitle: "请输入你的用户名称",
+      Placeholder: "name",
     },
     Model: "模型 (model)",
     Temperature: {
@@ -191,6 +203,7 @@ const cn = {
     },
   },
   Store: {
+    GroupDefault: `请先点击导航栏里面的 ⊕ ,然后邀请你想要加入这个群聊的Agents。然后在聊天框内输入你希望这次聊天发生的场景后，点击 ▷ 开始聊天`,
     DefaultTopic: "新的聊天",
     BotHello: "有什么可以帮你的吗",
     Error: "出错了，稍后重试吧",
@@ -209,7 +222,9 @@ const cn = {
   Context: {
     Toast: (x: any) => `包含 ${x} 条预设提示词`,
     Edit: "当前对话设置",
+    Rules: "Current Rules",
     Add: "新增预设对话",
+    Source: "参考资料",
     Clear: "上下文已清除",
     Revert: "恢复上下文",
   },
@@ -218,6 +233,17 @@ const cn = {
   },
   Group: {
     Name: "Group",
+  },
+
+  myRuleBase: {
+    Rule1: {
+      description: "Agents should answer the question step by step",
+      enabled: false,
+    },
+    Rule2: {
+      description: "Agents should answer the question concisely",
+      enabled: false,
+    },
   },
   Mask: {
     Name: "面具",
@@ -231,6 +257,7 @@ const cn = {
       Info: (count: number) => `包含 ${count} 条预设对话`,
       Chat: "对话",
       View: "查看",
+      Docs: "查文件",
       Edit: "编辑",
       Delete: "删除",
       DeleteConfirm: "确认删除？",
@@ -241,6 +268,7 @@ const cn = {
         `编辑预设面具 ${readonly ? "（只读）" : ""}`,
       Download: "下载预设",
       Clone: "克隆预设",
+      Done: "设置完成",
     },
     Config: {
       Avatar: "角色头像",

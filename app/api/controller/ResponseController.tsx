@@ -4,6 +4,33 @@ const BASEURL = `http://${URLProcessor.getCurURLHost()}/api/v1/`;
 
 /** This class is used to access response generated from ChatGPT */
 export default class ResponseController {
+  static async getResponse(request: any) {
+    const controller = new AbortController();
+    const timeout = 6000; // 设置超时时间为 1 分钟（60 秒）
+
+    setTimeout(() => {
+      controller.abort(); // 超时后中止请求
+    }, timeout);
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/v1/" + "getresponse",
+        request,
+      );
+
+      return response.json();
+    } catch (error) {
+      // @ts-ignore
+      if (error.name === "AbortError") {
+        // 请求超时处理
+        throw new Error("请求超时");
+      } else {
+        // 其他错误处理
+        throw error;
+      }
+    }
+  }
+
   /** Get an `assistant` response based on the provided input
    * @param msg user input message
    */

@@ -22,12 +22,13 @@ import Locale, { AllLangs, ALL_LANG_OPTIONS, Lang } from "../locales";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import chatStyle from "./chat.module.scss";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { downloadAs, readFromFile } from "../utils";
 import { Updater } from "../typing";
 import { ModelConfigList } from "./model-config";
 import { FileName, Path } from "../constant";
 import { BUILTIN_MASK_STORE } from "../masks";
+import { ExportFileCountModel } from "@/app/components/filecount";
 
 interface numStore {
   memNum: number;
@@ -78,6 +79,7 @@ export function MaskConfig(props: {
         context={props.mask.context}
         updateContext={(updater) => {
           const context = props.mask.context.slice();
+          console.log("The context ", context);
           updater(context);
           props.updateMask((mask) => (mask.context = context));
         }}
@@ -170,8 +172,15 @@ function ContextPromptItem(props: {
   update: (prompt: ChatMessage) => void;
   remove: () => void;
 }) {
+  const [role, setrole] = useState(false);
   const [focusingInput, setFocusingInput] = useState(false);
-
+  const promptforsystem =
+    "Please define your agents here(e.g. I want you to be patient.)";
+  const promptforuser = "Please add the chat_history to set the scene you want";
+  const promptforassistant =
+    "Please add the chat_history to set the scene you want";
+  const placeholder =
+    props.prompt.role === "system" ? promptforsystem : promptforassistant;
   return (
     <div className={chatStyle["context-prompt-row"]}>
       {!focusingInput && (
@@ -199,6 +208,7 @@ function ContextPromptItem(props: {
         rows={focusingInput ? 5 : 1}
         onFocus={() => setFocusingInput(true)}
         onBlur={() => setFocusingInput(false)}
+        placeholder={placeholder}
         onInput={(e) =>
           props.update({
             ...props.prompt,
@@ -225,7 +235,13 @@ export function ContextPrompts(props: {
   const context = props.context;
 
   const addContextPrompt = (prompt: ChatMessage) => {
-    props.updateContext((context) => context.push(prompt));
+    props.updateContext((context) => {
+      if (context.length === 0) {
+        prompt.content =
+          "Let's play this game. We are in the library now, I can help you with any question you want to know.";
+      }
+      context.push(prompt);
+    });
   };
 
   const removeContextPrompt = (i: number) => {
@@ -272,10 +288,10 @@ export function ContextPrompts(props: {
 
 export function MaskPage() {
   const navigate = useNavigate();
-
+  const [uuid, setuuid] = useState("None");
   const maskStore = useMaskStore();
   const chatStore = useChatStore();
-
+  const [showCount, setShowCount] = useState(false);
   const [filterLang, setFilterLang] = useState<Lang>();
 
   const allMasks = maskStore
@@ -464,6 +480,24 @@ export function MaskPage() {
                       }}
                     />
                   )}
+                  {m.builtin ? (
+                    <IconButton
+                      icon={<EyeIcon />}
+                      text={Locale.Mask.Item.View}
+                      onClick={() => setEditingMaskId(m.id)}
+                    />
+                  ) : (
+                    <IconButton
+                      icon={<EyeIcon />}
+                      text={Locale.Mask.Item.Docs}
+                      onClick={() => {
+                        setuuid(m.uuid_mask.toString());
+                        //alert(uuid);
+                        console.log(masks);
+                        setShowCount(true);
+                      }}
+                    />
+                  )}
                   {!state?.fromgroup && (
                     <IconButton
                       icon={<AddIcon />}
@@ -511,28 +545,30 @@ export function MaskPage() {
             title={Locale.Mask.EditModal.Title(editingMask?.builtin)}
             onClose={closeMaskModal}
             actions={[
-              <IconButton
-                icon={<DownloadIcon />}
-                text={Locale.Mask.EditModal.Download}
-                key="export"
-                bordered
-                onClick={() =>
-                  downloadAs(
-                    JSON.stringify(editingMask),
-                    `${editingMask.name}.json`,
-                  )
-                }
-              />,
+              // <IconButton
+              //   icon={<DownloadIcon />}
+              //   text={Locale.Mask.EditModal.Download}
+              //   key="export"
+              //   bordered
+              //   onClick={() =>
+              //     downloadAs(
+              //       JSON.stringify(editingMask),
+              //       `${editingMask.name}.json`,
+              //     )
+              //   }
+              // />,
               <IconButton
                 key="copy"
                 icon={<CopyIcon />}
                 bordered
-                text={Locale.Mask.EditModal.Clone}
-                onClick={() => {
-                  navigate(Path.Masks);
-                  maskStore.create(editingMask);
-                  setEditingMaskId(undefined);
-                }}
+                text={Locale.Mask.EditModal.Done}
+                onClick={
+                  //() => {
+                  // navigate(Path.Masks);
+                  // maskStore.create(editingMask);
+                  // setEditingMaskId(undefined);
+                  closeMaskModal
+                } //}
               />,
             ]}
           >
@@ -545,6 +581,9 @@ export function MaskPage() {
             />
           </Modal>
         </div>
+      )}
+      {showCount && (
+        <ExportFileCountModel onClose={() => setShowCount(false)} uuid={uuid} />
       )}
     </ErrorBoundary>
   );

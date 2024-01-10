@@ -8,6 +8,8 @@ import DownIcon from "../icons/down.svg";
 import { createRoot } from "react-dom/client";
 import React, { HTMLProps, useEffect, useState } from "react";
 import { IconButton } from "./button";
+import CollapsibleElement from "@/app/components/accordion";
+import { ChatMessage } from "@/app/store";
 
 export function Popover(props: {
   children: JSX.Element;
@@ -90,6 +92,9 @@ interface ModalProps {
   children?: JSX.Element | JSX.Element[];
   actions?: JSX.Element[];
   onClose?: () => void;
+  message?: ChatMessage;
+  content?: string;
+  comment?: string;
 }
 export function Modal(props: ModalProps) {
   useEffect(() => {
@@ -116,6 +121,15 @@ export function Modal(props: ModalProps) {
           <CloseIcon />
         </div>
       </div>
+      {props.message !== undefined && (
+        <div className={styles["modal-content"]}>
+          <CollapsibleElement
+            message={props.message?.sourceDocs}
+            content={props.content}
+            comment={props.comment}
+          />
+        </div>
+      )}
 
       <div className={styles["modal-content"]}>{props.children}</div>
 
@@ -224,7 +238,7 @@ export function Input(props: InputProps) {
 }
 
 export function PasswordInput(props: HTMLProps<HTMLInputElement>) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   function changeVisibility() {
     setVisible(!visible);
@@ -232,11 +246,11 @@ export function PasswordInput(props: HTMLProps<HTMLInputElement>) {
 
   return (
     <div className={"password-input-container"}>
-      <IconButton
-        icon={visible ? <EyeIcon /> : <EyeOffIcon />}
-        onClick={changeVisibility}
-        className={"password-eye"}
-      />
+      {/*<IconButton*/}
+      {/*  icon={visible ? <EyeIcon /> : <EyeOffIcon />}*/}
+      {/*  onClick={changeVisibility}*/}
+      {/*  className={"password-eye"}*/}
+      {/*/>*/}
       <input
         {...props}
         type={visible ? "text" : "password"}

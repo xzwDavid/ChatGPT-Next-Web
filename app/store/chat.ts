@@ -1,17 +1,18 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
+import { Document } from "langchain/document";
 import { trimTopic } from "../utils";
 
 import Locale from "../locales";
 import { showToast } from "../components/ui-lib";
-import { ModelType } from "./config";
-import { createEmptyMask, Mask } from "./mask";
+import { ModelConfig, ModelType } from "./config";
+import { createEmptyMask, Mask, useMaskStore } from "./mask";
 import { StoreKey } from "../constant";
 import { api, RequestMessage } from "../client/api";
 import { ChatControllerPool } from "../client/controller";
 import { prettyObject } from "../utils/format";
 import { useState } from "react";
+import { useAccessStore } from "@/app/store/access";
 
 export type ChatMessage = RequestMessage & {
   date: string;
@@ -19,7 +20,18 @@ export type ChatMessage = RequestMessage & {
   isError?: boolean;
   id?: number;
   model?: ModelType;
+  sourceDocs?: Document[];
+  origin_answer?: string;
+  comment?: string;
+  iscomment?: boolean;
 };
+
+export interface Masks {
+  id?: number;
+  isUser?: boolean;
+  title: string;
+  content: string;
+}
 
 export function createMessage(override: Partial<ChatMessage>): ChatMessage {
   return {
@@ -27,7 +39,7 @@ export function createMessage(override: Partial<ChatMessage>): ChatMessage {
     date: new Date().toLocaleString(),
     role: "user",
     content: "",
-
+    message_id: "-1",
     maskId: 0,
 
     ...override,
@@ -65,9 +77,13 @@ export const BOT_HELLO: ChatMessage = createMessage({
   content: Locale.Store.BotHello,
 });
 
+export const BOT_Group: ChatMessage = createMessage({
+  role: "assistant",
+  content: Locale.Store.GroupDefault,
+});
+
 function createEmptySession(): ChatSession {
   const val = Date.now() + Math.random();
-  //alert("Here is the "+ val.toString());
   return {
     id: val,
     topic: DEFAULT_TOPIC,
@@ -88,7 +104,9 @@ function createEmptySession(): ChatSession {
   };
 }
 function createEmptySessions(): ChatSession {
+  //  alert("group");
   //比原函数多加s，区分创建群聊
+
   return {
     clearContextIndex: 0,
     fileUploaded: [],
@@ -103,7 +121,6 @@ function createEmptySessions(): ChatSession {
     },
     lastUpdate: Date.now(),
     lastSummarizeIndex: 0,
-
     mask: createEmptyMask(),
     group: true,
     groupMem: 0,
@@ -112,6 +129,7 @@ function createEmptySessions(): ChatSession {
   };
 }
 interface ChatStore {
+  user_name: string;
   inputContent: string;
   sessions: ChatSession[];
   currentSessionIndex: number;
@@ -127,6 +145,12 @@ interface ChatStore {
   onUserInput: (
     content: string | ChatMessage[],
     maskId: number,
+    isGroup?: boolean,
+    isRule1?: boolean,
+    mask_uuid?: number,
+    setResponse?: React.Dispatch<React.SetStateAction<string>>,
+    setTempMessages?: React.Dispatch<React.SetStateAction<string[]>>,
+    modelConf?: ModelConfig,
   ) => Promise<void>;
   summarizeSession: () => void;
   updateStat: (message: ChatMessage) => void;
@@ -160,7 +184,9 @@ export const useChatStore = create<ChatStore>()(
       currentSessionIndex: 0,
       globalId: 0,
       inputContent: "",
+      user_name: "xzw",
       SystemInfos: [],
+
       clearSessions() {
         set(() => ({
           sessions: [createEmptySession()],
@@ -223,10 +249,14 @@ export const useChatStore = create<ChatStore>()(
       },
 
       newSessions(mask) {
+        //    alert("ll")
         const session = createEmptySessions();
+        //        alert(session.id)
+        //      alert("llllllll")
 
         set(() => ({ globalId: get().globalId + 1 }));
-        session.id = get().globalId;
+        //  alert(session.id);
+        //session.id = get().globalId;
 
         if (mask) {
           session.mask = { ...mask };
@@ -301,7 +331,7 @@ export const useChatStore = create<ChatStore>()(
           session.lastUpdate = Date.now();
         });
         get().updateStat(message);
-        get().summarizeSession();
+        //  get().summarizeSession();
         const msg = get().currentSession().messages;
         const content = msg[msg.length - 1].content;
         //console.log("[The msg is ]"+content);
@@ -321,10 +351,218 @@ export const useChatStore = create<ChatStore>()(
       //     console.log(get().SystemInfos.length)
       //     console.log(get().SystemInfos[0])
       //  },
-      async onUserInput(content: string | ChatMessage[], maskId: number) {
+      async onUserInput(
+        content: string | ChatMessage[],
+        maskId: number,
+        isGroup?: boolean,
+        isRule1?: boolean,
+        mask_uuid?: number,
+        setResponse?: React.Dispatch<React.SetStateAction<string>>,
+        setTempMessages?: React.Dispatch<React.SetStateAction<string[]>>,
+        modelConf?: ModelConfig,
+      ) {
+        const process_text = (input: string): string[] => {
+          // 使用正则表达式来匹配数字点后面的内容，并支持换行符
+          const regex = /(\d+)\.(.*?)(?:\n|$)/g;
+
+          const matches = input.match(regex);
+
+          if (matches) {
+            // 去除匹配结果中的点号和换行符并返回
+            return matches.map((match) => match.replace(/[\.\n]/g, "").trim());
+          } else {
+            return [];
+          }
+        };
+
+        if (isRule1 && typeof content === "string") {
+          const session = get().currentSession();
+          // const masks = useMaskStore.getAll()
+          let modelConfig;
+          if (!modelConf) {
+            modelConfig = session.mask.modelConfig;
+          } else {
+            modelConfig = modelConf;
+            // alert(modelConfig.model);
+          }
+
+          //alert(modelConfig.model)
+          const userMessage: ChatMessage = createMessage({
+            role: "user",
+            content: content,
+          });
+
+          const botMessage: ChatMessage = createMessage({
+            role: "assistant",
+            streaming: true,
+            id: userMessage.id! + 1,
+            model: modelConfig.model,
+          });
+          const botMessage_push: ChatMessage = createMessage({
+            role: "assistant",
+            streaming: false,
+            id: userMessage.id! + 1,
+            model: modelConfig.model,
+          });
+
+          const systemInfo = createMessage({
+            role: "system",
+            content: `IMPORTANT: You are a virtual assistant powered by the ${
+              modelConfig.model
+            } model, now time is ${new Date().toLocaleString()}}`,
+            id: botMessage_push.id! + 1,
+          });
+
+          // get recent messages
+          const systemMessages = [];
+          // if user define a mask with context prompts, wont send system info
+          if (session.mask.context.length === 0) {
+            systemMessages.push(systemInfo);
+          }
+
+          const recentMessages = get().getMessagesWithMemory();
+          console.log("[recentMessage", recentMessages);
+          const sendMessages = systemMessages.concat(
+            recentMessages.concat(userMessage),
+          );
+
+          console.log("[SendMessage is] : ", sendMessages);
+          const sessionIndex = get().currentSessionIndex;
+          const messageIndex = get().currentSession().messages.length + 1;
+
+          get().updateCurrentSession((session) => {
+            session.messages.push(userMessage);
+            session.messages.push(botMessage_push);
+          });
+
+          let isStreaming = true;
+          //alert(modelConfig.model);
+          if (modelConfig.model !== "gpt-3.5-turbo(Free talk)") {
+            isStreaming = false;
+          }
+
+          //alert(isStreaming)
+          // make request
+          console.log("[User Input] ", sendMessages);
+          const chat = get().currentSession();
+
+          //const chat_id = get().globalId
+          //alert(chat_id);
+          const uuid = chat.id;
+          //alert(uuid);
+
+          let prompt = "";
+
+          for (let i = chat.messages.length - 1; i >= 0; i--) {
+            if (chat.messages[i].role === "assistant") {
+              prompt = chat.mask?.context[0]?.content;
+              //alert(prompt);
+              break;
+            }
+          }
+          console.log("The config is ", modelConfig);
+          //const accessStore = useAccessStore();
+
+          api.llm.chat({
+            uuid: uuid,
+            group: session.group,
+            name: this.user_name,
+            agent_name: session.mask.name,
+            messages: sendMessages,
+            config: { ...modelConfig, stream: isStreaming },
+            prompt: prompt,
+            onUpdate(message) {
+              botMessage.streaming = true;
+              if (message) {
+                botMessage.content = message;
+              }
+              set(() => ({}));
+            },
+            onFinish(message, sourceDocs?, message_id?: string) {
+              //alert("triggered1!!");
+              botMessage.streaming = false;
+              //alert(botMessage.content);
+              if (message) {
+                botMessage.content = message;
+                botMessage.origin_answer = message;
+                if (setResponse) {
+                  setResponse(message);
+                }
+
+                if (setTempMessages) {
+                  const temp = process_text(message);
+
+                  console.log("The temp is ", temp);
+                  if (temp.length > 3) {
+                    setTempMessages(temp);
+                  }
+                  const addinfo1 =
+                    "I will answer your question step by step. \n";
+                  const addinfo2 =
+                    "\n If you have any question about this step, please ask me directly. If not, please input '1'.";
+                  botMessage_push.content = addinfo1 + temp[0] + addinfo2;
+                  botMessage_push.streaming = false;
+                }
+
+                if (sourceDocs) {
+                  botMessage_push.sourceDocs = sourceDocs;
+                }
+
+                get().onNewMessage(botMessage);
+              }
+              if (message_id) {
+                botMessage.message_id = message_id;
+              }
+              ChatControllerPool.remove(
+                sessionIndex,
+                botMessage.id ?? messageIndex,
+              );
+              set(() => ({}));
+            },
+            onError(error) {
+              const isAborted = error.message.includes("aborted");
+              botMessage.content =
+                "\n\n" +
+                prettyObject({
+                  error: true,
+                  message: error.message,
+                });
+              botMessage.streaming = false;
+              userMessage.isError = !isAborted;
+              botMessage.isError = !isAborted;
+
+              set(() => ({}));
+              ChatControllerPool.remove(
+                sessionIndex,
+                botMessage.id ?? messageIndex,
+              );
+
+              console.error("[Chat] failed ", error);
+            },
+            onController(controller) {
+              // collect controller for stop/retry
+              ChatControllerPool.addController(
+                sessionIndex,
+                botMessage.id ?? messageIndex,
+                controller,
+              );
+            },
+          });
+
+          //alert("oooo");
+          return;
+        }
+
         if (typeof content === "string") {
           const session = get().currentSession();
-          const modelConfig = session.mask.modelConfig;
+          //const modelConfig = session.mask.modelConfig;
+          let modelConfig;
+          if (!modelConf) {
+            modelConfig = session.mask.modelConfig;
+          } else {
+            modelConfig = modelConf;
+            //alert(modelConfig.model);
+          }
 
           //alert(modelConfig.model)
           const userMessage: ChatMessage = createMessage({
@@ -372,9 +610,10 @@ export const useChatStore = create<ChatStore>()(
           });
           let isStreaming = true;
           //alert(modelConfig.model);
-          if (modelConfig.model === "lang chain(Upload your docs)") {
+          if (modelConfig.model !== "gpt-3.5-turbo(Free talk)") {
             isStreaming = false;
           }
+
           //alert(isStreaming)
           // make request
           console.log("[User Input] ", sendMessages);
@@ -382,13 +621,29 @@ export const useChatStore = create<ChatStore>()(
 
           //const chat_id = get().globalId
           //alert(chat_id);
-          const uuid = chat.id;
-          //alert(uuid);
+          console.log("Here hhhhh", chat);
 
+          const uuid =
+            chat.mask.uuid_mask === -1 ? chat.id : chat.mask.uuid_mask;
+
+          let prompt = "";
+          for (let i = chat.messages.length - 1; i >= 0; i--) {
+            if (chat.messages[i].role === "assistant") {
+              prompt = chat.mask?.context[0]?.content;
+              //alert(prompt);
+              break;
+            }
+          }
+          console.log("The config is ", modelConfig);
+          //          alert("here")
           api.llm.chat({
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
             messages: sendMessages,
+            agent_name: session.mask.name,
             config: { ...modelConfig, stream: isStreaming },
+            prompt: prompt,
             onUpdate(message) {
               botMessage.streaming = true;
               if (message) {
@@ -396,12 +651,22 @@ export const useChatStore = create<ChatStore>()(
               }
               set(() => ({}));
             },
-            onFinish(message) {
+            onFinish(message, sourceDocs?, message_id?: string) {
+              alert(message_id);
               botMessage.streaming = false;
               //alert(botMessage.content);
               if (message) {
                 botMessage.content = message;
+                botMessage.origin_answer = message;
+
+                if (sourceDocs) {
+                  botMessage.sourceDocs = sourceDocs;
+                }
+
                 get().onNewMessage(botMessage);
+              }
+              if (message_id) {
+                botMessage.message_id = message_id;
               }
               ChatControllerPool.remove(
                 sessionIndex,
@@ -440,31 +705,28 @@ export const useChatStore = create<ChatStore>()(
           });
         } else {
           const session = get().currentSession();
-          const modelConfig = session.mask.modelConfig;
-          const question = content[content.length - 1].content;
+          let modelConfig;
+          if (!modelConf) {
+            modelConfig = session.mask.modelConfig;
+          } else {
+            modelConfig = modelConf;
+            //alert(modelConfig.model);
+          }
+
+          //const question = content[content.length - 1].content;
           //alert(modelConfig.model)
-          const userMessage: ChatMessage = createMessage({
-            role: "user",
-            content: question,
-          });
 
           const botMessage: ChatMessage = createMessage({
             role: "assistant",
             streaming: true,
-            id: userMessage.id! + 1,
             model: modelConfig.model,
           });
-
-          // const groupNum = get().SystemInfos.length;
-          // console.log(groupNum);
 
           const systemInfo = createMessage({
             role: "system",
             content: `IMPORTANT: You are a virtual assistant powered by the ${
               modelConfig.model
             } model, now time is ${new Date().toLocaleString()}}`,
-            // content:
-            // "从现在起你是一个充满哲学思维的心灵导师，当我每次输入一个疑问时你需要用一句富有哲理的名言警句来回答我，并且表明作者和出处\n\n\n要求字数不少于15个字，不超过30字，每次只返回一句且不输出额外的其他信息，你需要使用中文和英文双语输出\n\n\n当你准备好的时候只需要回复“我已经准备好了”（不需要输出任何其他内容）,你每次说话请使用“我是一个哲学家”开头",
           });
 
           // get recent messages
@@ -474,34 +736,55 @@ export const useChatStore = create<ChatStore>()(
             systemMessages.push(systemInfo);
           }
 
-          const recentMessages = get().getMessagesWithMemory();
-          console.log("[recentMessage", recentMessages);
-          const sendMessages = systemMessages.concat(
-            recentMessages.concat(userMessage),
-          );
+          // const recentMessages = get().getMessagesWithMemory();
+          // console.log("[recentMessage", recentMessages);
+          // const sendMessages = systemMessages.concat(
+          //   recentMessages.concat(userMessage),
+          // );
 
-          console.log("[SendMessage is] : ", sendMessages);
+          console.log("[SendMessage is] : ", content);
           const sessionIndex = get().currentSessionIndex;
           const messageIndex = get().currentSession().messages.length + 1;
           console.log("[messageIndex] : ", messageIndex);
-          // save user's and bot's message
+
           get().updateCurrentSession((session) => {
             session.messages.push(botMessage);
           });
+          //});
           let isStreaming = true;
           //alert(modelConfig.model);
-          if (modelConfig.model === "lang chain(Upload your docs)") {
+          if (modelConfig.model !== "gpt-3.5-turbo(Free talk)") {
             isStreaming = false;
           }
-          //alert(isStreaming)
-          // make request
-          console.log("[User Input] ", sendMessages);
+          isStreaming = false;
+
           const chat = get().currentSession();
-          const uuid = chat.id;
-          //alert("1111uuidcd  " + uuid);
+          //const uuid = chat.id;
+          let uuid =
+            chat.mask?.uuid_mask === -1 ? chat.id : chat.mask?.uuid_mask;
+          if (mask_uuid) {
+            if (chat.group && mask_uuid != -1) {
+              uuid = mask_uuid;
+              // alert(uuid)
+            }
+          }
+
+          let prompt = "";
+          for (let i = chat.messages.length - 1; i >= 0; i--) {
+            if (chat.messages[i].role === "assistant") {
+              prompt = chat.mask.avatar;
+              //alert(prompt);
+              break;
+            }
+          }
+          console.log("XZW   The config is ", modelConfig);
           api.llm.chat({
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
             messages: content,
+            prompt: prompt,
+            agent_name: session.mask.name,
             config: { ...modelConfig, stream: isStreaming },
             onUpdate(message) {
               botMessage.streaming = true;
@@ -510,7 +793,8 @@ export const useChatStore = create<ChatStore>()(
               }
               set(() => ({}));
             },
-            onFinish(message) {
+            onFinish(message, sourceDocs?, message_id?: string) {
+              //alert("triggered!!");
               set((state) => ({
                 ...state,
                 inputContent: message, // 更新 inputContent 的值
@@ -523,8 +807,18 @@ export const useChatStore = create<ChatStore>()(
               if (message) {
                 botMessage.content = message;
                 //here is
+
+                if (sourceDocs) {
+                  botMessage.sourceDocs = sourceDocs;
+                }
+
                 get().onNewMessage(botMessage);
               }
+
+              if (message_id) {
+                botMessage.message_id = message_id;
+              }
+
               ChatControllerPool.remove(
                 sessionIndex,
                 botMessage.id ?? messageIndex,
@@ -540,7 +834,7 @@ export const useChatStore = create<ChatStore>()(
                   message: error.message,
                 });
               botMessage.streaming = false;
-              userMessage.isError = !isAborted;
+              //userMessage.isError = !isAborted;
               botMessage.isError = !isAborted;
 
               set(() => ({}));
@@ -669,13 +963,19 @@ export const useChatStore = create<ChatStore>()(
           );
           console.log("[topicMessage] : ", topicMessages);
           const uuid = session.id;
+
           api.llm.chat({
+            prompt: "",
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
+            agent_name: session.mask.name,
             messages: topicMessages,
             config: {
               model: "gpt-3.5-turbo",
             },
             onFinish(message) {
+              //alert("triggered3!!");
               get().updateCurrentSession(
                 (session) =>
                   (session.topic =
@@ -726,11 +1026,15 @@ export const useChatStore = create<ChatStore>()(
           //alert("33333");
           api.llm.chat({
             uuid: uuid,
+            group: session.group,
+            name: this.user_name,
+            agent_name: session.mask.name,
+            prompt: "",
             messages: toBeSummarizedMsgs.concat({
               role: "system",
               content: Locale.Store.Prompt.Summarize,
               date: "",
-
+              message_id: "-1",
               maskId: 0,
             }),
             config: { ...modelConfig, stream: true },
@@ -738,6 +1042,7 @@ export const useChatStore = create<ChatStore>()(
               session.memoryPrompt = message;
             },
             onFinish(message) {
+              //alert("triggered4!!");
               console.log("[Memory] ", message);
               session.lastSummarizeIndex = lastSummarizeIndex;
             },

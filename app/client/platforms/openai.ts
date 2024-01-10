@@ -9,7 +9,7 @@ import {
 } from "@fortaine/fetch-event-source";
 import { prettyObject } from "@/app/utils/format";
 import { sendMessage } from "next/dist/client/dev/error-overlay/websocket";
-
+import ResponseController from "@/app/api/controller/ResponseController";
 export class ChatGPTApi implements LLMApi {
   public ChatPath =
     "/openai/deployments/chatGPT/chat/completions\\?api-version\\=2023-05-15";
@@ -23,24 +23,24 @@ export class ChatGPTApi implements LLMApi {
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i];
       const { role, content } = message;
-
-      if (role === "system") {
-        if (systemContent !== null) {
-          history.push([systemContent, ""]);
-          systemContent = null;
-        }
-      } else if (role === "user") {
-        const nextMessage = messages[i + 1];
-        if (nextMessage && nextMessage.role === "user") {
-          history.push([content, nextMessage.content]);
-          i++; // 跳过下一个消息，因为已经处理了
-        } else {
-          history.push([content, ""]);
-        }
-      } else {
-        // 其他角色的消息处理逻辑
-        // 如果有需要，请根据需求进行修改或添加
-      }
+      history.push([role, content]);
+      // if (role === "system") {
+      //   if (systemContent !== null) {
+      //     history.push(["system", systemContent]);
+      //     systemContent = null;
+      //   }
+      // } else if (role === "user") {
+      //   const nextMessage = messages[i + 1];
+      //   if (nextMessage && nextMessage.role === "user") {
+      //     history.push([content, nextMessage.content]);
+      //     i++; // 跳过下一个消息，因为已经处理了
+      //   } else {
+      //     history.push([content, ""]);
+      //   }
+      // } else {
+      //   // 其他角色的消息处理逻辑
+      //   // 如果有需要，请根据需求进行修改或添加
+      // }
     }
 
     return history;
@@ -64,6 +64,7 @@ export class ChatGPTApi implements LLMApi {
     const messages = options.messages.map((v) => ({
       role: v.role,
       content: v.content,
+      message_id: v.message_id,
     }));
 
     const modelConfig = {
@@ -73,22 +74,27 @@ export class ChatGPTApi implements LLMApi {
         model: options.config.model,
       },
     };
+    const messages2 = options.messages.map((v) => ({
+      role: v.role,
+      content: v.content,
+      // message_id: v.message_id,
+    }));
 
     const requestPayload = {
-      messages,
+      messages: messages2,
       stream: options.config.stream,
       model: modelConfig.model,
       temperature: modelConfig.temperature,
-      //max_tokens: 50,
-      //presence_penalty: modelConfig.presence_penalty,
+      max_tokens: modelConfig.max_tokens,
+      presence_penalty: modelConfig.presence_penalty,
     };
 
-    console.log("[Request] openai payload: ", requestPayload);
     const shouldStream = !!options.config.stream;
     const controller = new AbortController();
     options.onController?.(controller);
 
     try {
+      //alert("gpt!")
       //alert("options.config.stream"+ options.config.stream +"  "+shouldStream)
       const chatPath = this.path(this.ChatPath);
       const chatPayload = {
@@ -107,31 +113,78 @@ export class ChatGPTApi implements LLMApi {
         let responseText = "";
         let finished = false;
 
-        const finish = () => {
+        const ques = {
+          agent_name: options.agent_name,
+          name: options.name,
+          question: question,
+          group: options.group,
+          uuid: options.uuid,
+          messages,
+          stream: options.config.stream,
+          model: modelConfig.model,
+          temperature: modelConfig.temperature,
+          max_tokens: modelConfig.max_tokens,
+          presence_penalty: modelConfig.presence_penalty,
+        };
+        const quesPayload = {
+          method: "POST",
+          body: JSON.stringify(ques),
+          signal: controller.signal,
+          headers: getHeaders(),
+        };
+
+        const res = await fetch(
+          "http://localhost:5000/api/v1/" + "storequestion",
+          quesPayload,
+        );
+        const m_id = await res.json();
+
+        console.log("The res is ", m_id.content);
+        const finish = async () => {
+          const testBody = {
+            uuid: options.uuid,
+            request_id: m_id,
+            agent_name: options.agent_name,
+            name: options.name,
+            group: options.group,
+            response: responseText,
+          };
+          const testPayload = {
+            method: "POST",
+            body: JSON.stringify(testBody),
+            signal: controller.signal,
+            headers: getHeaders(),
+          };
+          const res = await fetch(
+            "http://localhost:5000/api/v1/" + "storeresponse",
+            testPayload,
+          );
+          const re_id = await res.json();
+
           if (!finished) {
-            options.onFinish(responseText);
+            // alert(re_id.content)
+            const message_id = re_id.content;
+            //alert(typeof message_id)
+            options.onFinish(responseText, undefined, message_id);
             finished = true;
           }
+
+          console.log("The res id is ", re_id.content);
+          //alert(responseText);
         };
 
         controller.signal.onabort = finish;
+
         fetchEventSource(chatPath, {
           ...chatPayload,
           async onopen(res) {
             clearTimeout(requestTimeoutId);
             const contentType = res.headers.get("content-type");
-            // console.log(
-            //   "[OpenAI] request response content type: ",
-            //   contentType,
-            // );
-
-            //alert(question)
             if (contentType?.startsWith("text/plain")) {
               responseText = await res.clone().text();
               return finish();
             }
-            //alert("Streaming");
-            //alert(sendMessage);
+
             if (
               !res.ok ||
               !res.headers
@@ -189,12 +242,95 @@ export class ChatGPTApi implements LLMApi {
           openWhenHidden: true,
         });
       } else {
-        //alert("No straming!!!");
-        if (modelConfig.model !== "lang chain(Upload your docs)") {
-          //console.log(JSON.stringify(testBody))
-
+        //alert(modelConfig.model)
+        if (modelConfig.model === "gpt-3.5-turbo(Free talk)") {
           try {
+            const startTime = new Date();
+
+            let responseText = "";
+            let finished = false;
+
+            const finishno = async () => {
+              // const testBody = {
+              //   agent_name: options.agent_name,
+              //   name: options.name,
+              //   group: options.group,
+              //   request_id: "error",
+              //   uuid: options.uuid,
+              //   response: responseText,
+              // };
+              // const testPayload = {
+              //   method: "POST",
+              //   body: JSON.stringify(testBody),
+              //   signal: controller.signal,
+              //   headers: getHeaders(),
+              // };
+              const testBody = {
+                uuid: options.uuid,
+                request_id: m_id,
+                agent_name: options.agent_name,
+                name: options.name,
+                group: options.group,
+                response: responseText,
+              };
+              const testPayload = {
+                method: "POST",
+                body: JSON.stringify(testBody),
+                signal: controller.signal,
+                headers: getHeaders(),
+              };
+              const res = await fetch(
+                "http://localhost:5000/api/v1/" + "storeresponse",
+                testPayload,
+              );
+              console.log(res);
+
+              //alert(responseText);
+            };
+
+            const testBody = {
+              uuid: options.uuid,
+              response: responseText,
+            };
+
+            const testPayload = {
+              method: "POST",
+              body: JSON.stringify(testBody),
+              signal: controller.signal,
+              headers: getHeaders(),
+            };
+            //alert("ooo")
+            const ques = {
+              agent_name: options.agent_name,
+              name: options.name,
+              group: options.group,
+              uuid: options.uuid,
+              question: question,
+              messages,
+              stream: options.config.stream,
+              model: modelConfig.model,
+              temperature: modelConfig.temperature,
+              max_tokens: modelConfig.max_tokens,
+              presence_penalty: modelConfig.presence_penalty,
+            };
+            const quesPayload = {
+              method: "POST",
+              body: JSON.stringify(ques),
+              signal: controller.signal,
+              headers: getHeaders(),
+            };
+
+            const resw = await fetch(
+              "http://localhost:5000/api/v1/" + "storequestion",
+              quesPayload,
+            );
+            //alert(responseText);
+            const m_id = await resw.json();
             const res = await fetch(chatPath, chatPayload);
+
+            const endTime = new Date();
+            const executionTime = endTime.getTime() - startTime.getTime();
+            //alert(executionTime);
             //const res = await fetch(testPath, testPayload);
             clearTimeout(requestTimeoutId);
 
@@ -205,19 +341,35 @@ export class ChatGPTApi implements LLMApi {
             const message = this.extractMessage(resJson);
             //const message = resJson.text;
             //alert(message)
-            options.onFinish(message);
+            responseText = message;
+            const message_id = resJson.response_id;
+            finishno();
+            options.onFinish(message, message_id);
           } catch (error) {
             console.error("Request error:", error);
           }
         } else {
+          //alert("poil")
           const history = this.getHistory(messages);
           const uuid = options.uuid;
-          const testPath = "http://localhost:3001/api/chat/";
+          //const testPath = "http://localhost:3001/api/chat/";
+          console.log("final message ", messages);
+          console.log("final history", history);
+          const is_agents =
+            modelConfig.model !== "lang chain(Upload your docs)";
           const testBody = {
+            is_agents: is_agents,
             uuid: uuid,
             question: question,
+            agent_name: options.agent_name,
+            name: options.name,
+            group: options.group,
             history: history,
+            agent_prompt: options.prompt,
+            max_tokens: modelConfig.max_tokens,
+            presence_penalty: modelConfig.presence_penalty,
           };
+          console.log("The question here is", testBody);
           console.log(testBody);
           const testPayload = {
             method: "POST",
@@ -227,9 +379,16 @@ export class ChatGPTApi implements LLMApi {
               "Content-Type": "application/json",
             },
           };
-
+          //salert("There!")
           try {
-            const res = await fetch(testPath, testPayload);
+            //alert("langchain")
+            //alert("kkkk")
+            //const res = await fetch(testPath, testPayload);
+
+            const res = await fetch(
+              "http://localhost:5000/api/v1/" + "getresponse",
+              testPayload,
+            );
             clearTimeout(requestTimeoutId);
 
             if (!res.ok) {
@@ -237,8 +396,13 @@ export class ChatGPTApi implements LLMApi {
             }
             const resJson = await res.json();
             const message = resJson.text;
+            const sourceDocs = resJson.sourceDocuments;
+            const message_id = resJson.response_id;
+            // messages[messages.length - 1].message_id;
+            //console.log("The res id is ",resJson.response_id)
+            console.log("The Docs is ", sourceDocs);
             //alert(message)
-            options.onFinish(message);
+            options.onFinish(message, sourceDocs, message_id);
           } catch (error) {
             console.error("Request error:", error);
           }
@@ -249,6 +413,7 @@ export class ChatGPTApi implements LLMApi {
       options.onError?.(e as Error);
     }
   }
+
   async usage() {
     const formatDate = (d: Date) =>
       `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, "0")}-${d
