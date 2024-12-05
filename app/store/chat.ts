@@ -652,7 +652,7 @@ export const useChatStore = create<ChatStore>()(
               set(() => ({}));
             },
             onFinish(message, sourceDocs?, message_id?: string) {
-              alert(message_id);
+              //alert(message_id);
               botMessage.streaming = false;
               //alert(botMessage.content);
               if (message) {

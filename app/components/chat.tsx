@@ -1654,7 +1654,7 @@ export function Chat() {
               headers: getHeaders(),
             };
             const res = await fetch(
-              "http://18.116.115.123:5000/api/v1/" + "editResponse",
+              "http://18.117.153.132:5000/api/v1/" + "editResponse",
               testPayload,
             );
           };

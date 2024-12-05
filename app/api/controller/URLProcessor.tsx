@@ -3,7 +3,7 @@ export default class URLProcessor {
   /** cached base path */
   private static basePathCache: string[] | null = null;
   /** public domain / IP address */
-  static publicDomain: string = "18.116.115.123:5000";
+  static publicDomain: string = "18.117.153.132:5000";
   /** local IP address */
   static localIP: string = "localhost:5000";
 

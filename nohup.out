@@ -1,0 +1,2595 @@
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/6/2023, 5:06:46 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/6/2023, 5:06:46 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/6/2023, 5:09:15 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/6/2023, 5:09:15 PM
+[Auth] admin did not provide an api key
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 3:54:36 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 3:54:36 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 4:00:07 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 4:00:07 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 4:01:52 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 4:01:52 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 4:03:32 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 4:03:32 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 5:11:36 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/7/2023, 5:11:37 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  194.99.79.103
+[Time]  9/7/2023, 1:52:11 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  194.99.79.103
+[Time]  9/7/2023, 1:52:11 PM
+[Auth] admin did not provide an api key
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/8/2023, 6:10:18 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/8/2023, 6:10:18 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/8/2023, 6:17:11 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/8/2023, 6:17:12 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/8/2023, 6:21:05 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/8/2023, 6:21:05 PM
+[Auth] admin did not provide an api key
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/8/2023, 6:24:39 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  2409:8c54:810:800::1:112
+[Time]  9/8/2023, 6:24:40 PM
+[Auth] admin did not provide an api key
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.80.97.178
+[Time]  9/9/2023, 1:58:09 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.80.97.178
+[Time]  9/9/2023, 1:58:09 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.24
+[Time]  9/9/2023, 8:40:42 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.24
+[Time]  9/9/2023, 8:40:42 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  98.34.121.221
+[Time]  9/9/2023, 8:41:03 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  98.34.121.221
+[Time]  9/9/2023, 8:41:03 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.98
+[Time]  9/10/2023, 6:07:19 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.98
+[Time]  9/10/2023, 6:07:19 AM
+[Auth] admin did not provide an api key
+Done in 126533.59s.
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.98
+[Time]  9/10/2023, 6:08:43 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.98
+[Time]  9/10/2023, 6:08:54 AM
+[Auth] admin did not provide an api key
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.24
+[Time]  9/10/2023, 3:45:27 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.24
+[Time]  9/10/2023, 3:45:27 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.24.114
+[Time]  9/10/2023, 3:46:44 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.24.114
+[Time]  9/10/2023, 3:46:44 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  67.184.71.109
+[Time]  9/10/2023, 8:19:42 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  67.184.71.109
+[Time]  9/10/2023, 8:19:42 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.92
+[Time]  9/10/2023, 10:36:13 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.92
+[Time]  9/10/2023, 10:36:13 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  98.253.60.61
+[Time]  9/10/2023, 10:41:36 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  98.253.60.61
+[Time]  9/10/2023, 10:41:36 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  98.253.60.61
+[Time]  9/11/2023, 12:01:31 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  98.253.60.61
+[Time]  9/11/2023, 12:01:32 AM
+[Auth] admin did not provide an api key
+Done in 65006.13s.
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+Done in 38.04s.
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.98
+[Time]  9/11/2023, 12:13:43 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.98
+[Time]  9/11/2023, 12:13:43 AM
+[Auth] admin did not provide an api key
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+yarn run v1.22.19
+warning package.json: License should be a valid SPDX license expression
+$ next start
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.240.226.41
+[Time]  9/11/2023, 12:41:03 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.240.226.41
+[Time]  9/11/2023, 12:41:07 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.240.226.41
+[Time]  9/11/2023, 12:41:07 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.240.226.41
+[Time]  9/11/2023, 12:53:48 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.240.226.41
+[Time]  9/11/2023, 12:54:00 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.240.226.41
+[Time]  9/11/2023, 12:54:00 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.240.226.41
+[Time]  9/11/2023, 12:55:02 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.240.226.41
+[Time]  9/11/2023, 12:55:02 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 4:09:20 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 4:09:20 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 4:51:58 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 4:51:58 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 4:55:32 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 4:55:32 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 5:55:50 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 5:55:50 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 5:59:36 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  173.230.115.86
+[Time]  9/11/2023, 5:59:37 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.27
+[Time]  9/12/2023, 6:07:38 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.27
+[Time]  9/12/2023, 6:07:38 PM
+[Auth] admin did not provide an api key
+- [33mwarn[39m "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  98.213.32.83
+[Time]  9/14/2023, 2:33:11 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  98.213.32.83
+[Time]  9/14/2023, 2:33:11 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.95
+[Time]  9/14/2023, 3:01:43 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.95
+[Time]  9/14/2023, 3:01:44 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.24
+[Time]  9/14/2023, 5:51:17 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.24
+[Time]  9/14/2023, 5:51:17 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.24
+[Time]  9/14/2023, 5:55:31 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.24
+[Time]  9/14/2023, 5:55:31 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.22
+[Time]  9/19/2023, 7:49:21 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.171.10.22
+[Time]  9/19/2023, 7:49:21 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  154.83.40.85
+[Time]  10/1/2023, 1:33:26 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  154.83.40.69
+[Time]  10/1/2023, 1:33:28 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.129.87
+[Time]  10/1/2023, 1:33:54 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.163.93
+[Time]  10/1/2023, 1:33:55 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  154.83.40.172
+[Time]  10/1/2023, 1:34:11 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:37:41 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:37:48 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:37:54 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:37:58 PM
+[Auth] admin did not provide an api key
+Error: 'sharp' is required to be installed in standalone mode for the image optimization to function correctly. Read more at: https://nextjs.org/docs/messages/sharp-missing-in-production
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:39:13 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:39:34 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:39:44 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:39:49 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  38.207.131.100
+[Time]  10/4/2023, 2:39:56 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  154.83.40.16
+[Time]  10/7/2023, 1:08:10 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  45.199.132.115
+[Time]  10/7/2023, 1:08:11 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  154.83.40.211
+[Time]  10/7/2023, 1:08:12 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  45.199.132.115
+[Time]  10/7/2023, 1:08:44 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.170.232
+[Time]  10/7/2023, 1:08:45 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.170.179
+[Time]  10/7/2023, 1:08:47 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.173.232
+[Time]  10/10/2023, 8:20:20 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  45.199.132.91
+[Time]  10/10/2023, 8:20:22 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  156.239.62.213
+[Time]  10/10/2023, 8:20:24 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.158.207
+[Time]  10/10/2023, 8:20:26 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  156.239.62.241
+[Time]  10/11/2023, 5:33:21 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.163.161
+[Time]  10/11/2023, 5:33:22 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  154.83.40.43
+[Time]  10/11/2023, 5:33:24 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.139.66
+[Time]  10/11/2023, 5:33:26 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.166.152
+[Time]  10/11/2023, 8:32:39 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.139.172
+[Time]  10/11/2023, 8:32:45 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.129.224
+[Time]  10/11/2023, 8:32:51 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.170.151
+[Time]  10/11/2023, 8:32:59 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  136.0.95.115
+[Time]  10/12/2023, 6:12:10 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.142.81
+[Time]  10/12/2023, 6:12:12 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.172.136.119
+[Time]  10/12/2023, 6:12:13 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.173.5
+[Time]  10/12/2023, 6:12:15 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.163.210
+[Time]  10/13/2023, 2:49:33 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  156.239.62.213
+[Time]  10/13/2023, 2:49:34 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.158.219
+[Time]  10/13/2023, 2:49:37 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.160.237
+[Time]  10/13/2023, 2:49:39 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'subscription' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  43.198.110.1
+[Time]  10/13/2023, 6:07:21 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'dashboard', 'billing', 'usage' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  43.198.110.1
+[Time]  10/13/2023, 6:07:21 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'openai', 'deployments', 'chatGPT', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  43.198.110.1
+[Time]  10/13/2023, 6:09:36 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  216.172.136.133
+[Time]  10/14/2023, 11:34:03 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  136.0.95.28
+[Time]  10/14/2023, 11:34:04 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.160.34
+[Time]  10/14/2023, 11:34:05 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.142.36
+[Time]  10/14/2023, 11:34:06 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.163.253
+[Time]  10/14/2023, 4:20:06 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  154.83.40.159
+[Time]  10/14/2023, 4:20:07 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  156.239.62.241
+[Time]  10/14/2023, 4:20:08 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.142.57
+[Time]  10/24/2023, 9:22:36 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  45.199.132.104
+[Time]  10/24/2023, 9:22:37 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  154.83.40.146
+[Time]  10/24/2023, 9:22:38 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.142.49
+[Time]  10/24/2023, 9:22:40 AM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  156.239.62.118
+[Time]  10/24/2023, 2:12:25 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  136.0.95.117
+[Time]  10/24/2023, 2:12:26 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.163.116
+[Time]  10/24/2023, 2:12:27 PM
+[Auth] admin did not provide an api key
+The origin form  <ref *1> ReadableStream {
+  _state: 'readable',
+  _reader: undefined,
+  _storedError: undefined,
+  _disturbed: false,
+  _readableStreamController: ReadableStreamDefaultController {
+  _controlledReadableStream: [Circular *1],
+  _queue: S {
+  _cursor: 0,
+  _size: 0,
+  _front: { _elements: [], _next: undefined },
+  _back: { _elements: [], _next: undefined }
+},
+  _queueTotalSize: 0,
+  _started: true,
+  _closeRequested: false,
+  _pullAgain: false,
+  _pulling: true,
+  _strategySizeAlgorithm: [Function],
+  _strategyHWM: 1,
+  _pullAlgorithm: [Function],
+  _cancelAlgorithm: [Function]
+}
+}
+[OpenAI Route] params  { path: [ 'v1', 'chat', 'completions' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  192.177.173.30
+[Time]  10/24/2023, 2:12:28 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'v1', 'models' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  91.244.197.122
+[Time]  11/10/2023, 9:05:35 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'v1', 'models' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  91.244.197.122
+[Time]  11/11/2023, 10:45:32 AM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'v1', 'models' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  91.244.197.122
+[Time]  11/11/2023, 11:11:05 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'v1', 'models' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  91.244.197.122
+[Time]  11/11/2023, 11:11:28 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'v1', 'models' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  91.244.197.122
+[Time]  11/11/2023, 11:37:24 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'v1', 'models' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  91.244.197.122
+[Time]  11/12/2023, 3:30:00 PM
+[Auth] admin did not provide an api key
+The origin form  null
+[OpenAI Route] params  { path: [ 'v1', 'models' ] }
+[Auth] allowed hashed codes:  []
+[Auth] got access code: 
+[Auth] hashed access code: d41d8cd98f00b204e9800998ecf8427e
+[User IP]  91.244.197.122
+[Time]  11/12/2023, 3:33:01 PM
+[Auth] admin did not provide an api key

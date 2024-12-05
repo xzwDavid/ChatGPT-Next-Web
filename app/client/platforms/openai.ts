@@ -134,7 +134,7 @@ export class ChatGPTApi implements LLMApi {
         };
 
         const res = await fetch(
-          "http://18.116.115.123:5000/api/v1/" + "storequestion",
+          "http://18.117.153.132:5000/api/v1/" + "storequestion",
           quesPayload,
         );
         const m_id = await res.json();
@@ -156,7 +156,7 @@ export class ChatGPTApi implements LLMApi {
             headers: getHeaders(),
           };
           const res = await fetch(
-            "http://18.116.115.123:5000/api/v1/" + "storeresponse",
+            "http://18.117.153.132:5000/api/v1/" + "storeresponse",
             testPayload,
           );
           const re_id = await res.json();
@@ -280,7 +280,7 @@ export class ChatGPTApi implements LLMApi {
                 headers: getHeaders(),
               };
               const res = await fetch(
-                "http://18.116.115.123:5000/api/v1/" + "storeresponse",
+                "http://18.117.153.132:5000/api/v1/" + "storeresponse",
                 testPayload,
               );
               console.log(res);
@@ -321,7 +321,7 @@ export class ChatGPTApi implements LLMApi {
             };
 
             const resw = await fetch(
-              "http://18.116.115.123:5000/api/v1/" + "storequestion",
+              "http://18.117.153.132:5000/api/v1/" + "storequestion",
               quesPayload,
             );
             //alert(responseText);
@@ -386,7 +386,7 @@ export class ChatGPTApi implements LLMApi {
             //const res = await fetch(testPath, testPayload);
 
             const res = await fetch(
-              "http://18.116.115.123:5000/api/v1/" + "getresponse",
+              "http://18.117.153.132:5000/api/v1/" + "getresponse",
               testPayload,
             );
             clearTimeout(requestTimeoutId);
